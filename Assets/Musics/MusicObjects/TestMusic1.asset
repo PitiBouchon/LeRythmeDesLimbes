@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestMusic1
   m_EditorClassIdentifier: 
   musicName: 
-  mucic: {fileID: 8300000, guid: b0d9a0ca7309b544fa19ff021cecea20, type: 3}
+  mucic: {fileID: 8300000, guid: 8af3ef25042ebac41b25598156a783a7, type: 3}
   volume: 0.05
-  tempo: 0.6666667
-  offset: -0.001
+  tempo: 1
+  offset: 0
