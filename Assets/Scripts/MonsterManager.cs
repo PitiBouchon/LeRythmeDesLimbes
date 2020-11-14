@@ -89,7 +89,7 @@ public class MonsterManager : MonoBehaviour
 
         // SET THE FIRST PATTERN
         addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
-        Debug.Log(monsterQueue.Count);
+        
         addMonster();
 
         // SET THE MATRIX
@@ -132,7 +132,6 @@ public class MonsterManager : MonoBehaviour
 
     public void addMonster()
     {
-        Debug.Log(monsterQueue.Count);
         MonsterType monsterType = monsterQueue.Dequeue();
         GameObject monsterToSpawn = new GameObject();
         switch (monsterType)
