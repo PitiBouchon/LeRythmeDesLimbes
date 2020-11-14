@@ -24,12 +24,14 @@ public class GameManager : MonoBehaviour
 
     private int[] nextSentence;
 
-    private int progression = 0; // A MODIFIER LORSQUE UNE AME GENTILLE SURVIT JUSQU AU BOUT
+    public int progression = 0;
 
     private bool isPlaying = true;
 
     public int maxHP = 20;
     public Text HPText;
+
+    public int goNext;
 
 
     void Start()
@@ -57,13 +59,19 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    //turretManager.TempoUpdate();
+                    turretManager.TempoUpdate();
+                    if (progression == 10)
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                    }
                 }
                 
 
                 yield return new WaitForSecondsRealtime(pulse);
             }
-            currentSentence = musicManager.getNextSentence(true); // VARIER L ARGUMENT SELON LA PROGRESSION
+            
+            currentSentence = musicManager.getNextSentence(true);
+            
             currentSentenceLength = currentSentence.GetLength(0);
         }
     }

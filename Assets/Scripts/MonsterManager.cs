@@ -94,6 +94,9 @@ public class MonsterManager : MonoBehaviour
     {
         path1 = tileMap.gameObject.GetComponent<TilemapPath>().path1;
 
+        updateSoulsText(friendlySoulsText, friendlySouls);
+        updateSoulsText(enemySoulsText, enemySouls);
+
         // SET THE FIRST PATTERN
         addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
 
@@ -194,6 +197,11 @@ public class MonsterManager : MonoBehaviour
     public void addFriendlySouls()
     {
         friendlySouls += 1;
+        gameManager.progression +=1;
+        // if (gameManager.progression%5 == 0)
+        // {
+        //     gameManager.goNext++;
+        // }
         updateSoulsText(friendlySoulsText, friendlySouls);
     }
 

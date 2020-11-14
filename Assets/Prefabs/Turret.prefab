@@ -1036,7 +1036,7 @@ MonoBehaviour:
   attackRateIncreaseOnRankUp: 1
   permaAttack: 0
   isOn: 1
-  buildCost: 10
+  buildCost: 3
   upgradeCost: 5
   sellPrice: 3
   rank: 0
