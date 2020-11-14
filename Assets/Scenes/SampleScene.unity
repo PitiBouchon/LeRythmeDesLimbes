@@ -121,12 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 --- !u!4 &390276323 stripped
-=======
->>>>>>> 3847ef2202d6017e48e8c07dbde5116c43993387
 --- !u!1 &80282496
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,8 +373,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: 8, y: 1, z: 0}
-<<<<<<< HEAD
-=======
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -799,7 +792,6 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!4 &390276323
->>>>>>> 713de18adc40c3c44d02e30ccf6a15f347754f2b
 Transform:
   m_CorrespondingSourceObject: {fileID: 2712300938795733679, guid: 5932132f0862ab4498443a1571523f44,
     type: 3}
@@ -811,8 +803,6 @@ Tilemap:
     type: 3}
   m_PrefabInstance: {fileID: 2712300938506532428}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-=======
   m_GameObject: {fileID: 390276322}
   m_Enabled: 1
   m_Tiles:
@@ -2455,7 +2445,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: -5, y: 3, z: 0}
->>>>>>> 3847ef2202d6017e48e8c07dbde5116c43993387
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -2856,7 +2845,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< HEAD
 --- !u!1 &390276322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,9 +2887,6 @@ Tilemap:
     type: 3}
   m_PrefabInstance: {fileID: 2712300938506532428}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> 713de18adc40c3c44d02e30ccf6a15f347754f2b
->>>>>>> 3847ef2202d6017e48e8c07dbde5116c43993387
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
