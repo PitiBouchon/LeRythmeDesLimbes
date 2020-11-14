@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
+    public TurretBasic lonelyTurret;
+
     void Start()
     {
         currentSentence = musicManager.getFirstSentence(1);
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    //UPDATE TOWERS
+                    lonelyTurret.TempoUpdate();
                 }
                 
                 if (i == 0)
