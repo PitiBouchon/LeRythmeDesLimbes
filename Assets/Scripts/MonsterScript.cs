@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
 {
-    public List<Vector2> path;
+    [HideInInspector] public List<Vector2> path;
     public int health = 3;
     public int tileSpeed = 1;
     public bool friendly = false;
-    public MonsterManager monsterManager;
+    [HideInInspector] public MonsterManager monsterManager;
     private int actualIndex = 0;
 
     void Start()
