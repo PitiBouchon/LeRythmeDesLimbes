@@ -37,7 +37,7 @@ public class TurretBasic : Turret, TurretInterface
         //}
     }
 
-    public void tempoUpdate()
+    public void TempoUpdate()
     {
         ResetAttack();
         if (attackLoad == attackRate)
@@ -56,7 +56,7 @@ public class TurretBasic : Turret, TurretInterface
         base.Update();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            tempoUpdate();
+            TempoUpdate();
         }
     }
 }
