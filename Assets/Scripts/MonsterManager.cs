@@ -61,7 +61,7 @@ public class MonsterManager : MonoBehaviour
     // PATTERNS
     [SerializeField]
     public Pattern[] patterns;
-    private Queue<MonsterType> monsterQueue;
+    private Queue<MonsterType> monsterQueue = new Queue<MonsterType>();
 
     // TILES
     public Tilemap tileMap;
