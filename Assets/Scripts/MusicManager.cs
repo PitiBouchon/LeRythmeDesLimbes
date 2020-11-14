@@ -24,11 +24,11 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         leitmotiv.tempochart = new int[16]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        level1Percu.tempochart = new int[5]{0,0,0,0,0};
-        level1Part1.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part2.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part3.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part4.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Percu.tempochart = new int[8]{0,0,0,0,0,0,0,0};
+        level1Part1.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part2.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part3.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part4.tempochart = new int[36]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
 
         audioSource = GetComponent<AudioSource>();
         level1.Add(level1Percu);
@@ -70,6 +70,8 @@ public class MusicManager : MonoBehaviour
             audioSource.clip = level1[currentPart].mucic;
             audioSource.volume = level1[currentPart].volume;
             audioSource.Play();
+            Debug.Log(audioSource.clip);
+            Debug.Log("PLAYING AGAIN");
         }
 
         return level1[currentPart].tempochart;
