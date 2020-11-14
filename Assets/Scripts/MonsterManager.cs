@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class MonsterManager : MonoBehaviour
 {
@@ -10,26 +11,25 @@ public class MonsterManager : MonoBehaviour
 
     // TILES
     public Tilemap tileMap;
-    public List<Vector2> path1;
     public string tilePath = "tilesetTest_0";
+    private List<Vector2> path1;
 
     private Vector2 sizeTileMap;
     private string[,] mapMatrix;
 
-    void OnDrawGizmosSelected() // Affiche des ronds sur le chemins
-    {
-        Gizmos.color = Color.blue;
-        foreach (Vector2 pos in path1)
-        {
-            Gizmos.DrawSphere(new Vector3(pos.x + 0.5f, pos.y + 0.5f, 0), 0.45f);
-        }
-    }
+    public Text enemySoulsText;
+    public Text friendlySoulsText;
+    private int enemySouls = 0;
+    private int friendlySouls = 0;
 
     void Start()
     {
+        path1 = tileMap.gameObject.GetComponent<TilemapPath>().path1;
+
         BoundsInt bounds = tileMap.cellBounds;
         mapMatrix = new string[bounds.size.x, bounds.size.y];
         TileBase[] allTiles = tileMap.GetTilesBlock(bounds);
+        
 
         // Recupere les tiles et creer la matrice
         for (int x = 0; x < bounds.size.x; x++)
@@ -37,11 +37,22 @@ public class MonsterManager : MonoBehaviour
             for (int y = 0; y < bounds.size.y; y++)
             {
                 TileBase tile = allTiles[x + y * bounds.size.x];
-                mapMatrix[x, y] = (tilePath == tile.name) ? "path" : "ground";
+                if (!(tile is null))
+                {
+                    mapMatrix[x, y] = (tilePath == tile.name) ? "path" : "ground";
+                }
+                else
+                {
+                    mapMatrix[x, y] = "unknown";
+                }
             }
         }
 
         sizeTileMap = new Vector2(mapMatrix.GetLength(0), mapMatrix.GetLength(1));
+
+        // TEST
+       // TileBase tile2 = allTiles[0 + 10 * bounds.size.x];
+        //AnimatedTile tile3 = tileMap.GetTile<AnimatedTile>(new Vector3Int(0,10,0));
     }
 
     public void addMonster()
@@ -59,5 +70,45 @@ public class MonsterManager : MonoBehaviour
         {
             monsterScript.updatePosition();
         }
+    }
+
+    void updateSoulsText(Text text, int number)
+    {
+        text.text = number.ToString();
+    }
+
+    public void addFriendlySouls()
+    {
+        friendlySouls += 1;
+        updateSoulsText(friendlySoulsText, friendlySouls);
+    }
+
+    public int getFriendlySouls()
+    {
+        return friendlySouls;
+    }
+
+    public void setFriendlySouls(int friendlySoulsToSet)
+    {
+        friendlySouls = friendlySoulsToSet;
+        updateSoulsText(friendlySoulsText, friendlySouls);
+    }
+
+
+    public void addEnemySouls()
+    {
+        enemySouls += 1;
+        updateSoulsText(enemySoulsText, enemySouls);
+    }
+
+    public int getEnemySouls()
+    {
+        return enemySouls;
+    }
+
+    public void setEnemySouls(int enemySoulsToSet)
+    {
+        enemySouls = enemySoulsToSet;
+        updateSoulsText(enemySoulsText, enemySouls);
     }
 }

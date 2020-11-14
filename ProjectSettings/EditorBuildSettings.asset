@@ -9,9 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: aa7a7c1ae770f24448760cec77863bfb
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/LevelMenu.unity
     guid: 71a064821c7950140bf1e20cd24f7212
   - enabled: 1
     path: Assets/Scenes/TestMenusCorian.unity
     guid: 652f2b1d21fb95e438ca7d6988de378e
+=======
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Mayow.unity
+    guid: 3cb200d938658d040aab4d38bc773872
+  - enabled: 1
+    path: Assets/Scenes/TestMenusCorrian.unity
+    guid: 0ed33ee0c3bf0ab4b8e5bdd540f2e7fb
+>>>>>>> 475ca77d3f9bdb1f0694047f6b7ad330d6369f94
   m_configObjects: {}

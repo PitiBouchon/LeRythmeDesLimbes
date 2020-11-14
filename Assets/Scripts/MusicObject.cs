@@ -7,6 +7,12 @@ public class MusicObject : ScriptableObject
 {
     public string musicName;
     public AudioClip mucic;
-    public float tempo;
+    [SerializeField]
+    [Range(0, 1)]
+    public float volume;
+    public float tempo = 0.5f;
     public float offset = 0;
+
+    
+
 }
