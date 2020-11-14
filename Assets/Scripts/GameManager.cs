@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
 
     public TurretBasic lonelyTurret;
 
+
     void Start()
     {
-        currentSentence = musicManager.getFirstSentence(2);
+        currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
         currentSentenceLength = currentSentence.GetLength(0);
         StartCoroutine(UpdateRythm());
     }
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
             }
             currentSentence = musicManager.getNextSentence(true); // VARIER L ARGUMENT SELON LA PROGRESSION
             currentSentenceLength = currentSentence.GetLength(0);
-
         }
     }
 

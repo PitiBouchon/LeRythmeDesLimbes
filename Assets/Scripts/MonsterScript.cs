@@ -21,7 +21,7 @@ public class MonsterScript : MonoBehaviour
         if (actualIndex >= path.Count)
         {
             Debug.Log("Path ended");
-            die();
+            Destroy(gameObject);
         }
         else
         {
@@ -59,7 +59,6 @@ public class MonsterScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Attack"))
         {
             getHit();
-            Debug.Log("AH");
         }
     }
 }
