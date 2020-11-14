@@ -61,7 +61,7 @@ public class MonsterManager : MonoBehaviour
     // PATTERNS
     [SerializeField]
     public Pattern[] patterns;
-    private Queue<MonsterType> monsterQueue;
+    private Queue<MonsterType> monsterQueue = new Queue<MonsterType>();
 
     // TILES
     public Tilemap tileMap;
@@ -125,6 +125,7 @@ public class MonsterManager : MonoBehaviour
     public void addMonster()
     {
         MonsterType monsterType = monsterQueue.Dequeue();
+        Debug.Log(monsterType);
         GameObject monsterToSpawn = monstersDic[monsterType];
         GameObject monsterSpawned = Instantiate(monsterToSpawn, path1[0] + Vector2.one * 0.5f, Quaternion.identity, transform);
         monsterSpawned.GetComponent<MonsterScript>().path = path1;
