@@ -45,10 +45,6 @@ public class GameManager : MonoBehaviour
                     lonelyTurret.TempoUpdate();
                 }
                 
-                if (i %4 == 0)
-                {
-                    monsterManager.addMonster();
-                }
 
                 yield return new WaitForSecondsRealtime(pulse);
             }

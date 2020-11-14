@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -69,6 +68,12 @@ public class MonsterManager : MonoBehaviour
     public Pattern[] patterns;
     private Queue<MonsterType> monsterQueue = new Queue<MonsterType>();
 
+    private bool isGenerating;
+    private int nextGenCounter = 5;
+
+    public int minWaitTimeGeneration = 2;
+    public int maxWaitTimeGeneration = 10;
+
     // TILES
     public Tilemap tileMap;
     public string tilePathName = "tilesetTest_0";
@@ -131,28 +136,42 @@ public class MonsterManager : MonoBehaviour
     public void addMonster()
     {
         //Debug.Log("MM : " + path1.Count);
+        if (isGenerating) {
+            MonsterType monsterType = monsterQueue.Dequeue();
+            GameObject monsterToSpawn = new GameObject();
+            switch (monsterType)
+            {
+                case MonsterType.Friendly:
+                    monsterToSpawn = Friendly;
+                    break;
+                case MonsterType.Squishy:
+                    monsterToSpawn = Squishy;
+                    break;
+                case MonsterType.Tank:
+                    monsterToSpawn = Tank;
+                    break;
+            }
+            //GameObject monsterToSpawn = monstersDic[monsterType];
+            GameObject monsterSpawned = Instantiate(monsterToSpawn, path1[0] + Vector2.one * 0.5f, Quaternion.identity, transform);
+            monsterSpawned.GetComponent<MonsterScript>().path = new List<Vector2>(path1);
+            if (monsterQueue.Count <= 0)
+            {
+                addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
+                isGenerating = false;
+                nextGenCounter = UnityEngine.Random.Range(minWaitTimeGeneration,maxWaitTimeGeneration);
+            }
+        }
 
-        MonsterType monsterType = monsterQueue.Dequeue();
-        GameObject monsterToSpawn = new GameObject();
-        switch (monsterType)
+        else
         {
-            case MonsterType.Friendly:
-                monsterToSpawn = Friendly;
-                break;
-            case MonsterType.Squishy:
-                monsterToSpawn = Squishy;
-                break;
-            case MonsterType.Tank:
-                monsterToSpawn = Tank;
-                break;
+            nextGenCounter-=1;
+            if (nextGenCounter <=0)
+            {
+                isGenerating = true;
+            }
+
         }
-        //GameObject monsterToSpawn = monstersDic[monsterType];
-        GameObject monsterSpawned = Instantiate(monsterToSpawn, path1[0] + Vector2.one * 0.5f, Quaternion.identity, transform);
-        monsterSpawned.GetComponent<MonsterScript>().path = new List<Vector2>(path1);
-        if (monsterQueue.Count <= 0)
-        {
-            addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
-        }
+
     }
 
     public void updateMonsters()
@@ -162,6 +181,7 @@ public class MonsterManager : MonoBehaviour
         {
             monsterScript.updatePosition();
         }
+        addMonster();
     }
 
     void updateSoulsText(Text text, int number)
