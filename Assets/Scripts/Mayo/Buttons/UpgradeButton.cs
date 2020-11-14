@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class UpgradeButton : TurretMenuButton
 {
-    private void UpgradeTurret()
+
+    public void UpgradeTurret()
     {
-        correspondingTurret.Upgrade();
+        if (correspondingTurret.upgradeCost <= monsterManager.getEnemySouls())
+        {
+            correspondingTurret.Upgrade();
+        }
     }
+
+
 }
