@@ -7,6 +7,7 @@ public class MonsterScript : MonoBehaviour
     public List<Vector2> path;
     public int health = 3;
     public int tileSpeed = 1;
+    public bool friendly = false;
     private int actualIndex = 0;
 
     public void updatePosition()
@@ -29,7 +30,15 @@ public class MonsterScript : MonoBehaviour
         health -= 1;
         if (health <= 0)
         {
-            Debug.Log("Die");
+            if (friendly)
+            {
+                Debug.Log("Die friendly");
+            }
+            else
+            {
+                Debug.Log("Die enemy");
+            }
+            
             Destroy(gameObject);
         }
     }

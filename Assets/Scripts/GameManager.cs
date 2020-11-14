@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
+    // Monsters
     public MonsterManager monsterManager;
+
+    // Music
     public MusicObject musicBackground;
+    private AudioMixer audioMixer;
+
+    // Timer
     private float timerTempo;
     private int timerCount;
 
     void Start()
     {
         GetComponent<AudioSource>().clip = musicBackground.mucic;
+        GetComponent<AudioSource>().volume = musicBackground.volume;
         timerTempo = musicBackground.offset;
         GetComponent<AudioSource>().Play();
     }
