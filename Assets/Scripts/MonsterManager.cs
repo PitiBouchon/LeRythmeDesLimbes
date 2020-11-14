@@ -153,7 +153,6 @@ public class MonsterManager : MonoBehaviour
         {
             addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
         }
-        Debug.Log("Add a monster");
     }
 
     public void updateMonsters()

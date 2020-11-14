@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
                     lonelyTurret.TempoUpdate();
                 }
                 
-                if (i == 0)
+                if (i %4 == 0)
                 {
                     monsterManager.addMonster();
                 }

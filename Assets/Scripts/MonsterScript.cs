@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterScript : MonoBehaviour
 {
     [HideInInspector] public List<Vector2> path;
-    public int health = 3;
+    public int health = 1;
     public int tileSpeed = 1;
     public bool friendly = false;
     [HideInInspector] public MonsterManager monsterManager;
@@ -59,6 +59,7 @@ public class MonsterScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Attack"))
         {
             getHit();
+            Debug.Log("AH");
         }
     }
 }
