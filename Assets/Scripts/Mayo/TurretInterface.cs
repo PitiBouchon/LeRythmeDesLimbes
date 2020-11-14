@@ -5,5 +5,5 @@ using UnityEngine;
 public interface TurretInterface
 {
     void Attack();
-    void Upgrade();
+    void tempoUpdate();
 }

@@ -9,8 +9,8 @@ public class TurretBasic : Turret, TurretInterface
         
     }
 
-    public void Upgrade()
+    public void tempoUpdate()
     {
-        
+        Attack();
     }
 }
