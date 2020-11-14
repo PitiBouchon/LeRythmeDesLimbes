@@ -12,7 +12,10 @@ public abstract class Turret : MonoBehaviour
     [Space][Header("Attack parameters")]
     [SerializeField] protected int attackDamage = 1;
     [SerializeField] protected int attackRate = 2;
-    [SerializeField] protected int attackLoad = 0; 
+    [SerializeField] protected int attackLoad = 0;
+    [SerializeField] protected int attackDamageIncreaseOnRankUp = 1;
+    [SerializeField] protected int attackRateIncreaseOnRankUp = 1;
+    [SerializeField] protected bool permaAttack = false;
     [SerializeField] protected bool isOn = true;
 
     [Space][Header("Souls costs")]
@@ -79,8 +82,15 @@ public abstract class Turret : MonoBehaviour
     {
         if (rank < 2)
         {
-            attackDamage++;
-            attackRate--;
+            attackDamage += attackDamageIncreaseOnRankUp;
+            if (attackRate > 1)
+            {
+                attackRate -= attackRateIncreaseOnRankUp;
+            }
+            else
+            {
+                permaAttack = true;
+            }
             monsterManager.setEnemySouls(monsterManager.getEnemySouls() - upgradeCost);
             rank++;
             upgradeCost += 5;

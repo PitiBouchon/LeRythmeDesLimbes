@@ -17,7 +17,7 @@ public class TurretBasic : Turret, TurretInterface
         //attackTile = monsterManager.tileMap.GetTile<Tile>(new Vector3Int((position + orientation).x, (position + orientation).y, 0));
         attackCollider = transform.Find("Attack").GetComponent<BoxCollider2D>();
         attackCollider.transform.Translate(new Vector3(orientation.x, orientation.y));
-        attackCollider.size = monsterManager.tileMap.cellSize;
+        attackCollider.size = monsterManager.tileMap.cellSize * 0.8f;
         //attackTile.sprite = normalTile;
         attackCollider.gameObject.SetActive(false);
     }
@@ -39,18 +39,25 @@ public class TurretBasic : Turret, TurretInterface
 
     public void TempoUpdate()
     {
-        ResetAttack();
-        if (isOn) 
+        if (!permaAttack)
         {
-            if (attackLoad == attackRate-1)
+            ResetAttack();
+            if (isOn) 
             {
-                Attack();
-                attackLoad = 0;
+                if (attackLoad == attackRate-1)
+                {
+                    Attack();
+                    attackLoad = 0;
+                }
+                else
+                {
+                    attackLoad++;
+                }
             }
-            else
-            {
-                attackLoad++;
-            }
+        }
+        else
+        {
+            Attack();
         }
     }
 
