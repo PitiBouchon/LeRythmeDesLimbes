@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private AudioMixer audioMixer;
     public MusicManager musicManager;
 
-    [SerializeField] private float pulse = 0.5f;
+    [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
 
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private int progression = 0; // A MODIFIER LORSQUE UNE AME GENTILLE SURVIT JUSQU AU BOUT
 
     private bool isPlaying = true;
+
+    public TurretBasic lonelyTurret;
 
     void Start()
     {
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    //UPDATE TOWERS
+                    lonelyTurret.TempoUpdate();
                 }
                 
                 if (i == 0)

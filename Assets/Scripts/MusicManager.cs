@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour
     public MusicObject level1Part2;
     public MusicObject level1Part3;
     public MusicObject level1Part4;
+    public MusicObject level1Fin;
 
     private AudioSource audioSource;
 
@@ -23,12 +24,13 @@ public class MusicManager : MonoBehaviour
     private int currentLevelLength = 0;
     void Awake()
     {
-        leitmotiv.tempochart = new int[16]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        level1Percu.tempochart = new int[8]{0,0,0,0,0,0,0,0};
-        level1Part1.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part2.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part3.tempochart = new int[32]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-        level1Part4.tempochart = new int[36]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        leitmotiv.tempochart = new int[32]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        level1Percu.tempochart = new int[16]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        level1Part1.tempochart = new int[64]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part2.tempochart = new int[64]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part3.tempochart = new int[64]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Part4.tempochart = new int[72]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        level1Fin.tempochart = new int[8]{0,0,0,0,0,0,0,0};
 
         audioSource = GetComponent<AudioSource>();
         level1.Add(level1Percu);
@@ -36,6 +38,7 @@ public class MusicManager : MonoBehaviour
         level1.Add(level1Part2);
         level1.Add(level1Part3);
         level1.Add(level1Part4);
+        level1.Add(level1Fin);
     }
 
 

@@ -80,8 +80,8 @@ public class MonsterManager : MonoBehaviour
     // SOULS and UI
     public Text enemySoulsText;
     public Text friendlySoulsText;
-    private int enemySouls = 0;
-    private int friendlySouls = 0;
+    public int enemySouls = 0;
+    public int friendlySouls = 0;
 
     void Awake()
     {
@@ -130,7 +130,7 @@ public class MonsterManager : MonoBehaviour
 
     public void addMonster()
     {
-        Debug.Log(path1.Count);
+        //Debug.Log("MM : " + path1.Count);
 
         MonsterType monsterType = monsterQueue.Dequeue();
         GameObject monsterToSpawn = new GameObject();

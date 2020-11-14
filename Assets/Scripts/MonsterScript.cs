@@ -14,7 +14,6 @@ public class MonsterScript : MonoBehaviour
     void Start()
     {
         monsterManager = transform.parent.GetComponent<MonsterManager>(); // A CHANGER SI ON CHANGE L'IMPLEMENTATION
-        Debug.Log(path.Count);
     }
     public void updatePosition()
     {
@@ -52,6 +51,14 @@ public class MonsterScript : MonoBehaviour
         if (health <= 0)
         {
             die();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            getHit();
         }
     }
 }
