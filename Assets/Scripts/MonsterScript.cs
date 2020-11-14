@@ -14,7 +14,6 @@ public class MonsterScript : MonoBehaviour
     void Start()
     {
         monsterManager = transform.parent.GetComponent<MonsterManager>(); // A CHANGER SI ON CHANGE L'IMPLEMENTATION
-        Debug.Log(path.Count);
     }
     public void updatePosition()
     {

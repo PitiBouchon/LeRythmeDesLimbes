@@ -130,7 +130,7 @@ public class MonsterManager : MonoBehaviour
 
     public void addMonster()
     {
-        Debug.Log(path1.Count);
+        //Debug.Log("MM : " + path1.Count);
 
         MonsterType monsterType = monsterQueue.Dequeue();
         GameObject monsterToSpawn = new GameObject();
