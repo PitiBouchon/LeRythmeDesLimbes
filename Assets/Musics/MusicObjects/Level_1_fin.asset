@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6b3f7e55b468584691c69738070d86a, type: 3}
-  m_Name: TestMusic1
+  m_Name: Level_1_fin
   m_EditorClassIdentifier: 
   musicName: 
-  mucic: {fileID: 8300000, guid: 8af3ef25042ebac41b25598156a783a7, type: 3}
+  mucic: {fileID: 8300000, guid: 1353585f061c76f4b97d3dceca47a0fc, type: 3}
   volume: 0.5
   tempo: 1
   offset: 0

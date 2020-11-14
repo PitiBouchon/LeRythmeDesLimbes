@@ -13,6 +13,6 @@ public class MusicObject : ScriptableObject
     public float tempo = 0.5f;
     public float offset = 0;
 
-    
+    public int[] tempochart = {0,0,0,0};
 
 }
