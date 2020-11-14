@@ -6,42 +6,46 @@ using UnityEngine.UI;
 public abstract class Turret : MonoBehaviour
 {
     [Header("Position parameters")]
-    [SerializeField] private Vector2 position;
-    [SerializeField] private Vector2 orientation = Vector2.right;
+    [SerializeField] protected Vector2Int orientation = Vector2Int.right;
+    protected Vector2Int position;
 
     [Space][Header("Attack parameters")]
-    [SerializeField] private int attackRate = 2;
-    [SerializeField] private int attackDamage = 1;
+    [SerializeField] protected int attackDamage = 1;
+    [SerializeField] protected int attackRate = 2;
+    [SerializeField] protected int attackLoad = 0; 
+    [SerializeField] protected bool isOn = true;
 
     [Space][Header("Souls costs")]
     public int buildCost = 10;
     public int upgradeCost = 5;
     public int sellPrice = 3;
-    [SerializeField] private int rank = 0;
+    [SerializeField] protected int rank = 0;
 
     [Space][Header("UI")]
-    [SerializeField] private Canvas turretMenu;
-    private CameraManager cameraManager;
-    private UpgradeButton upgradeButton;
-    private SellButton sellButton;
-    private Text upgradeCostText;
-    private Text sellPriceText;
+    [SerializeField] protected Canvas turretMenu;
+    protected CameraManager cameraManager;
+    protected UpgradeButton upgradeButton;
+    protected SellButton sellButton;
+    protected Text upgradeCostText;
+    protected Text sellPriceText;
+    protected bool isMenuOn = false;
 
     [Space][Header("Sprites")]
-    [SerializeField] private Sprite standardSprite;
-    [SerializeField] private Sprite hoverSprite;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] protected Sprite standardSprite;
+    [SerializeField] protected Sprite hoverSprite;
+    protected SpriteRenderer spriteRenderer;
 
 
-    [SerializeField] private bool isOn = true;
 
     
-    private MonsterManager monsterManager;
+    protected MonsterManager monsterManager;
 
-    private bool isMenuOn = false;
 
-    private void Start()
+    protected void Start()
     {
+        position = new Vector2Int((int)Mathf.Floor(transform.position.x), (int)Mathf.Floor(transform.position.y));
+        transform.position = new Vector2(position.x + .5f, position.y + .5f);
+
         monsterManager = FindObjectOfType<MonsterManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cameraManager = FindObjectOfType<CameraManager>();
@@ -53,7 +57,7 @@ public abstract class Turret : MonoBehaviour
         UpdateButtons();
     }
 
-    private void LateUpdate()
+    protected void Update()
     {
         if (Input.GetMouseButtonDown(0) && isMenuOn)
         {
@@ -91,7 +95,7 @@ public abstract class Turret : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnMouseOver()
+    protected void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && !isMenuOn)
         {
@@ -105,17 +109,17 @@ public abstract class Turret : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    protected void OnMouseEnter()
     {
         spriteRenderer.sprite = hoverSprite;
     }
 
-    private void OnMouseExit()
+    protected void OnMouseExit()
     {
         spriteRenderer.sprite = standardSprite;
     }
 
-    private void UpdateButtons()
+    protected void UpdateButtons()
     {
         if (rank == 2)
         {
