@@ -89,8 +89,6 @@ public class MonsterManager : MonoBehaviour
 
         // SET THE FIRST PATTERN
         addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
-        Debug.Log(monsterQueue.Count);
-        addMonster();
 
         // SET THE MATRIX
         BoundsInt bounds = tileMap.cellBounds;
@@ -132,7 +130,8 @@ public class MonsterManager : MonoBehaviour
 
     public void addMonster()
     {
-        Debug.Log(monsterQueue.Count);
+        Debug.Log(path1.Count);
+
         MonsterType monsterType = monsterQueue.Dequeue();
         GameObject monsterToSpawn = new GameObject();
         switch (monsterType)
@@ -149,7 +148,7 @@ public class MonsterManager : MonoBehaviour
         }
         //GameObject monsterToSpawn = monstersDic[monsterType];
         GameObject monsterSpawned = Instantiate(monsterToSpawn, path1[0] + Vector2.one * 0.5f, Quaternion.identity, transform);
-        monsterSpawned.GetComponent<MonsterScript>().path = path1;
+        monsterSpawned.GetComponent<MonsterScript>().path = new List<Vector2>(path1);
         if (monsterQueue.Count <= 0)
         {
             addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
