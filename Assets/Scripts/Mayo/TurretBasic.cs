@@ -9,28 +9,46 @@ public class TurretBasic : Turret, TurretInterface
     [SerializeField] private Sprite attackedTile;
 
     private Tile attackTile;
-    private BoxCollider2D attackCollider;
+    private BoxCollider2D attackColliderRight;
+    private BoxCollider2D attackColliderLeft;
+    private BoxCollider2D attackColliderUp;
+    private BoxCollider2D attackColliderDown;
 
     private new void Start()
     {
         base.Start();
         //attackTile = monsterManager.tileMap.GetTile<Tile>(new Vector3Int((position + orientation).x, (position + orientation).y, 0));
-        attackCollider = transform.Find("Attack").GetComponent<BoxCollider2D>();
-        attackCollider.transform.Translate(new Vector3(orientation.x, orientation.y));
-        attackCollider.size = monsterManager.tileMap.cellSize * 0.8f;
+        attackColliderRight = transform.Find("AttackRight").GetComponent<BoxCollider2D>();
+        attackColliderLeft = transform.Find("AttackLeft").GetComponent<BoxCollider2D>();
+        attackColliderUp = transform.Find("AttackUp").GetComponent<BoxCollider2D>();
+        attackColliderDown = transform.Find("AttackDown").GetComponent<BoxCollider2D>();
+        attackColliderRight.transform.Translate(new Vector3(1, 0));
+        attackColliderLeft.transform.Translate(new Vector3(-1, 0));
+        attackColliderUp.transform.Translate(new Vector3(0, 1));
+        attackColliderDown.transform.Translate(new Vector3(0, -1));
+        attackColliderRight.size = monsterManager.tileMap.cellSize * 0.8f;
+        attackColliderLeft.size = monsterManager.tileMap.cellSize * 0.8f;
+        attackColliderUp.size = monsterManager.tileMap.cellSize * 0.8f;
+        attackColliderDown.size = monsterManager.tileMap.cellSize * 0.8f;
         //attackTile.sprite = normalTile;
-        attackCollider.gameObject.SetActive(false);
+        attackColliderRight.gameObject.SetActive(false);
     }
 
     public void Attack()
     {
-        attackCollider.gameObject.SetActive(true);
+        attackColliderRight.gameObject.SetActive(true);
+        attackColliderLeft.gameObject.SetActive(true);
+        attackColliderUp.gameObject.SetActive(true);
+        attackColliderDown.gameObject.SetActive(true);
         //attackTile.sprite = attackedTile;
     }
 
     private void ResetAttack()
     {
-        attackCollider.gameObject.SetActive(false);
+        attackColliderRight.gameObject.SetActive(false);
+        attackColliderLeft.gameObject.SetActive(false);
+        attackColliderUp.gameObject.SetActive(false);
+        attackColliderDown.gameObject.SetActive(false);
         //if (attackTile.sprite != normalTile)
         //{
         //    attackTile.sprite = normalTile;
