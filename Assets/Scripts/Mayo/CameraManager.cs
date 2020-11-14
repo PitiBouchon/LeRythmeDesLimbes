@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] [Range(0, 0.5f)] private float verticalBox = .25f;
     [SerializeField] private float cameraMovementSpeed = 1f;
     [SerializeField] private float cameraZoomSpeed = 1f;
+    public bool shouldMove = true;
 
     private Camera camera;
 
@@ -38,7 +39,10 @@ public class CameraManager : MonoBehaviour
             direction += Vector2.up;
         }
 
-        transform.Translate(direction * cameraMovementSpeed * Time.deltaTime);
+        if (shouldMove)
+        {
+            transform.Translate(direction * cameraMovementSpeed * Time.deltaTime);
+        }
         camera.orthographicSize += -Input.mouseScrollDelta.y * cameraZoomSpeed * Time.deltaTime;
     }
 
