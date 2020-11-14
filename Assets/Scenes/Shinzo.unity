@@ -4200,19 +4200,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502c2bffbcf8d67409e6d9586377be24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monstersDic:
-    _keys: 000000000100000002000000
-    _values:
-    - {fileID: 4061560629512184719, guid: 5d4963cb63a1aa649bfdd5dd1591ee3e, type: 3}
-    - {fileID: 5733698695765458926, guid: f57431bc93bc7084686a08fa66110fdf, type: 3}
-    - {fileID: 2950468853404940434, guid: 239653cd93d961b4fa8562baaf8f3d33, type: 3}
+  Friendly: {fileID: 4061560629512184719, guid: 5d4963cb63a1aa649bfdd5dd1591ee3e,
+    type: 3}
+  Squishy: {fileID: 5733698695765458926, guid: f57431bc93bc7084686a08fa66110fdf, type: 3}
+  Tank: {fileID: 2950468853404940434, guid: 239653cd93d961b4fa8562baaf8f3d33, type: 3}
   patterns:
   - pattern: 0100000002000000000000000100000002000000
   - pattern: 0000000002000000010000000000000001000000
   tileMap: {fileID: 144499351}
   tilePathName: tilesetTest_0
-  enemySoulsText: {fileID: 0}
-  friendlySoulsText: {fileID: 0}
+  enemySoulsText: {fileID: 1679288377}
+  friendlySoulsText: {fileID: 1007007466}
 --- !u!4 &258401784
 Transform:
   m_ObjectHideFlags: 0
@@ -4318,6 +4316,7 @@ GameObject:
   - component: {fileID: 721559408}
   - component: {fileID: 721559407}
   - component: {fileID: 721559406}
+  - component: {fileID: 721559409}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4384,12 +4383,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721559405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 5, z: -10}
+  m_LocalPosition: {x: 11.43, y: 7.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &721559409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721559405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e93a3c7088f05f4ab18a0f97fcd2969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalBox: 0.25
+  verticalBox: 0.25
+  cameraMovementSpeed: 1
+  cameraZoomSpeed: 1
+  shouldMove: 1
 --- !u!1 &1001082747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4426,10 +4442,6 @@ MonoBehaviour:
   level1Part2: {fileID: 11400000, guid: 4ca7bfc08d08b7a4ca263fd518f8e079, type: 2}
   level1Part3: {fileID: 11400000, guid: 600052fa976b53945b9a3039a14df9c2, type: 2}
   level1Part4: {fileID: 11400000, guid: 274b643fc034b6b4d9c15f145db17ad7, type: 2}
-  level1: []
-  currentLevel: []
-  currentPart: 0
-  currentLevelLength: 0
 --- !u!4 &1001082749
 Transform:
   m_ObjectHideFlags: 0

@@ -17,11 +17,11 @@ public class MusicManager : MonoBehaviour
     private AudioSource audioSource;
 
 
-    public List<MusicObject> level1;
-    public List<MusicObject> currentLevel;
-    public int currentPart;
-    public int currentLevelLength;
-    void Start()
+    private List<MusicObject> level1 = new List<MusicObject>();
+    private List<MusicObject> currentLevel;
+    private int currentPart = 0;
+    private int currentLevelLength = 0;
+    void Awake()
     {
         leitmotiv.tempochart = new int[16]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         level1Percu.tempochart = new int[8]{0,0,0,0,0,0,0,0};
@@ -43,13 +43,13 @@ public class MusicManager : MonoBehaviour
     {
         if (level == 1)
         { 
-            currentLevel = level1;
+            currentLevel = new List<MusicObject>(level1);
             currentPart = 0;
-            currentLevelLength = level1.Count;
-            audioSource.clip = level1[currentPart].mucic;
-            audioSource.volume = level1[currentPart].volume;
+            currentLevelLength = currentLevel.Count;
+            audioSource.clip = currentLevel[currentPart].mucic;
+            audioSource.volume = currentLevel[currentPart].volume;
             audioSource.Play();
-            return level1[currentPart].tempochart;
+            return currentLevel[currentPart].tempochart;
         }
         
         return leitmotiv.tempochart;
@@ -61,19 +61,17 @@ public class MusicManager : MonoBehaviour
         if (next)
         {
             currentPart++;
-            audioSource.clip = level1[currentPart].mucic;
-            audioSource.volume = level1[currentPart].volume;
+            audioSource.clip = currentLevel[currentPart].mucic;
+            audioSource.volume = currentLevel[currentPart].volume;
             audioSource.Play();
         }
         else
         {
-            audioSource.clip = level1[currentPart].mucic;
-            audioSource.volume = level1[currentPart].volume;
+            audioSource.clip = currentLevel[currentPart].mucic;
+            audioSource.volume = currentLevel[currentPart].volume;
             audioSource.Play();
-            Debug.Log(audioSource.clip);
-            Debug.Log("PLAYING AGAIN");
         }
 
-        return level1[currentPart].tempochart;
+        return currentLevel[currentPart].tempochart;
     }
 }

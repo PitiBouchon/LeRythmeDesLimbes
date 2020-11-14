@@ -21,47 +21,53 @@ public class MonsterManager : MonoBehaviour
         Tank
     }
 
-    public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
-    {
-        private Dictionary<TKey, TValue> _Dictionary;
+    //public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+    //{
+    //    private Dictionary<TKey, TValue> _Dictionary;
 
-        [SerializeField]
-        private List<TKey> _keys = new List<TKey>();
+    //    [SerializeField]
+    //    private List<TKey> _keys = new List<TKey>();
 
-        [SerializeField]
-        private List<TValue> _values = new List<TValue>();
+    //    [SerializeField]
+    //    private List<TValue> _values = new List<TValue>();
 
-        public void OnBeforeSerialize()
-        {
-            /*_keys.Clear();
-            _values.Clear();*/
+    //    public void OnBeforeSerialize()
+    //    {
+    //        /*_keys.Clear();
+    //        _values.Clear();*/
 
-            foreach (KeyValuePair<TKey, TValue> pair in this)
-            {
-                _keys.Add(pair.Key);
-                _values.Add(pair.Value);
-            }
-        }
+    //        foreach (KeyValuePair<TKey, TValue> pair in this)
+    //        {
+    //            _keys.Add(pair.Key);
+    //            _values.Add(pair.Value);
+    //        }
+    //    }
 
-        public void OnAfterDeserialize()
-        {
-            _Dictionary = new Dictionary<TKey, TValue>();
+    //    public void OnAfterDeserialize()
+    //    {
+    //        _Dictionary = new Dictionary<TKey, TValue>();
 
-            for (int i = 0; i != Math.Min(_keys.Count, _values.Count); i++)
-                _Dictionary.Add(_keys[i], _values[i]);
-        }
-    }
-    [Serializable]
-    public class MonstersDict : SerializableDictionary<MonsterType, GameObject> { }
+    //        for (int i = 0; i != Math.Min(_keys.Count, _values.Count); i++)
+    //        {
+    //            _Dictionary.Add(_keys[i], _values[i]);
+    //        }
+    //        Debug.Log(_Dictionary.Count);
+    //    }
+    //}
+    //[Serializable]
+    //public class MonstersDict : SerializableDictionary<MonsterType, GameObject> { }
 
 
     // MONTSERS
-    public MonstersDict monstersDic;
+    //public MonstersDict monstersDic;
+    public GameObject Friendly;
+    public GameObject Squishy;
+    public GameObject Tank;
 
     // PATTERNS
     [SerializeField]
     public Pattern[] patterns;
-    private Queue<MonsterType> monsterQueue;
+    private Queue<MonsterType> monsterQueue = new Queue<MonsterType>();
 
     // TILES
     public Tilemap tileMap;
@@ -77,12 +83,14 @@ public class MonsterManager : MonoBehaviour
     private int enemySouls = 0;
     private int friendlySouls = 0;
 
-    void Start()
+    void Awake()
     {
         path1 = tileMap.gameObject.GetComponent<TilemapPath>().path1;
 
         // SET THE FIRST PATTERN
         addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
+        Debug.Log(monsterQueue.Count);
+        addMonster();
 
         // SET THE MATRIX
         BoundsInt bounds = tileMap.cellBounds;
@@ -114,7 +122,7 @@ public class MonsterManager : MonoBehaviour
         //AnimatedTile tile3 = tileMap.GetTile<AnimatedTile>(new Vector3Int(0,10,0));
     }
 
-    void addPatternToQueue(Pattern pattern)
+    public void addPatternToQueue(Pattern pattern)
     {
         foreach (MonsterType monsterType in pattern.pattern)
         {
@@ -124,8 +132,22 @@ public class MonsterManager : MonoBehaviour
 
     public void addMonster()
     {
+        Debug.Log(monsterQueue.Count);
         MonsterType monsterType = monsterQueue.Dequeue();
-        GameObject monsterToSpawn = monstersDic[monsterType];
+        GameObject monsterToSpawn = new GameObject();
+        switch (monsterType)
+        {
+            case MonsterType.Friendly:
+                monsterToSpawn = Friendly;
+                break;
+            case MonsterType.Squishy:
+                monsterToSpawn = Squishy;
+                break;
+            case MonsterType.Tank:
+                monsterToSpawn = Tank;
+                break;
+        }
+        //GameObject monsterToSpawn = monstersDic[monsterType];
         GameObject monsterSpawned = Instantiate(monsterToSpawn, path1[0] + Vector2.one * 0.5f, Quaternion.identity, transform);
         monsterSpawned.GetComponent<MonsterScript>().path = path1;
         if (monsterQueue.Count <= 0)

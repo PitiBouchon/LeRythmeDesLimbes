@@ -38,14 +38,14 @@ public class GameManager : MonoBehaviour
             for (var i = 0 ; i<currentSentenceLength ; i++)
             {
                 if (currentSentence[i] == 1){
-                    //monsterManager.updateMonsters();
+                    monsterManager.updateMonsters();
                     //UPDATE ALLIES
                     //UPDATE TOWERS
                 }
                 
                 if (i == 0)
                 {
-                    //monsterManager.addMonster();
+                    monsterManager.addMonster();
                 }
 
                 yield return new WaitForSecondsRealtime(pulse);
