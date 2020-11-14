@@ -19,8 +19,8 @@ public class MonsterManager : MonoBehaviour
 
     public Text enemySoulsText;
     public Text friendlySoulsText;
-    public int enemySouls = 0;
-    public int friendlySouls = 0;
+    private int enemySouls = 0;
+    private int friendlySouls = 0;
 
     void Start()
     {
