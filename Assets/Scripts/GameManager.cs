@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private AudioMixer audioMixer;
     public MusicManager musicManager;
 
-    [SerializeField] private float pulse = 0.5f;
+    [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
 

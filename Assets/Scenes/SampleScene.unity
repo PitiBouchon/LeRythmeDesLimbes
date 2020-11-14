@@ -4119,12 +4119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef37ce6370238ac4c9987fa711217784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path1:
-  - {x: 0, y: 8}
-  - {x: 1, y: 8}
-  - {x: 2, y: 8}
-  - {x: 3, y: 8}
-  - {x: 0, y: 8}
+  path1: []
 --- !u!1 &390276322
 GameObject:
   m_ObjectHideFlags: 0
@@ -6724,6 +6719,7 @@ MonoBehaviour:
   monsterManager: {fileID: 1392228390}
   musicManager: {fileID: 0}
   pulse: 0.5
+  lonelyTurret: {fileID: 0}
 --- !u!82 &937532913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6895,12 +6891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502c2bffbcf8d67409e6d9586377be24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monstersDic:
-    _keys: 000000000100000002000000
-    _values:
-    - {fileID: 4061560629512184719, guid: 5d4963cb63a1aa649bfdd5dd1591ee3e, type: 3}
-    - {fileID: 5733698695765458926, guid: f57431bc93bc7084686a08fa66110fdf, type: 3}
-    - {fileID: 2950468853404940434, guid: 239653cd93d961b4fa8562baaf8f3d33, type: 3}
+  Friendly: {fileID: 0}
+  Squishy: {fileID: 0}
+  Tank: {fileID: 0}
   patterns:
   - pattern: 0100000002000000000000000100000002000000
   - pattern: 0000000002000000010000000000000001000000
@@ -6908,6 +6901,8 @@ MonoBehaviour:
   tilePathName: tilesetTest_0
   enemySoulsText: {fileID: 553091980}
   friendlySoulsText: {fileID: 746009465}
+  enemySouls: 0
+  friendlySouls: 0
 --- !u!4 &1392228391
 Transform:
   m_ObjectHideFlags: 0

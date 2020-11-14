@@ -458,7 +458,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterManager: {fileID: 1663809260}
   musicManager: {fileID: 1052239307}
-  pulse: 0.5
+  pulse: 0.25
+  lonelyTurret: {fileID: 1673151264}
 --- !u!4 &524313038
 Transform:
   m_ObjectHideFlags: 0
@@ -572,7 +573,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 11.935962
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -596,7 +597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747053825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 8.2, y: 7.27, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -886,6 +887,8 @@ MonoBehaviour:
   tilePathName: tilesetTest_0
   enemySoulsText: {fileID: 370089788}
   friendlySoulsText: {fileID: 1851853893}
+  enemySouls: 20000
+  friendlySouls: 0
 --- !u!4 &1663809261
 Transform:
   m_ObjectHideFlags: 0
@@ -900,6 +903,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673151264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6699632453213745178, guid: 0b135bc4408b4ed45bda801a0e611214,
+    type: 3}
+  m_PrefabInstance: {fileID: 1711789957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b110b1a25a42564ba4ab6339470ad7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1711789957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,20 +927,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 6699632453213745178, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: orientation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699632453213745178, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: orientation.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 321.807
+      value: 9.54
       objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -83.13238
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
