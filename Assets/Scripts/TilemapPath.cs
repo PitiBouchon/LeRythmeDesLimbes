@@ -6,7 +6,7 @@ public class TilemapPath : MonoBehaviour
 {
     public List<Vector2> path1 = new List<Vector2>();
 
-    void Start()
+    void Awake()
     {
         if (path1.Count == 0)
         {
