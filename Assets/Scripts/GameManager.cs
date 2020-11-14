@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
-    private int[] sentenceIntro = {0,0,0,0,0,0,0,0};
+    private int[] sentenceIntro = {1,1,1,1,1,1,1,1};
     private int[] sentence1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private int[] sentence2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private int[] transition1 = {0,0,0,0,0,0,0,0};
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                     monsterManager.addMonster();
                 }
             }
-            currentSentence = nextSentence;
+            //currentSentence = nextSentence;
             
             //UPDATE NEXT SENTENCE KNOWING PROGRESSION
 
