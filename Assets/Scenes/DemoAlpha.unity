@@ -1315,6 +1315,7 @@ MonoBehaviour:
   musicManager: {fileID: 1052239307}
   pulse: 0.25
   lonelyTurret: {fileID: 1673151264}
+  maxHP: 20
 --- !u!4 &524313038
 Transform:
   m_ObjectHideFlags: 0
@@ -2612,6 +2613,7 @@ MonoBehaviour:
   friendlySoulsText: {fileID: 1851853893}
   enemySouls: 0
   friendlySouls: 0
+  gameManager: {fileID: 0}
 --- !u!4 &1663809261
 Transform:
   m_ObjectHideFlags: 0
@@ -2649,6 +2651,30 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 589679546, guid: 0b135bc4408b4ed45bda801a0e611214, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092216376295490768, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3255837224827779126, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_TagString
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739290770515818425, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037015876521260576, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745177, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_Name
@@ -2667,12 +2693,12 @@ PrefabInstance:
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.45
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.54
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 6699632453213745179, guid: 0b135bc4408b4ed45bda801a0e611214,
         type: 3}
@@ -2718,6 +2744,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812500244122808110, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_TagString
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951647778752704217, guid: 0b135bc4408b4ed45bda801a0e611214,
+        type: 3}
+      propertyPath: m_TagString
+      value: Attack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b135bc4408b4ed45bda801a0e611214, type: 3}
