@@ -24,16 +24,9 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
-    private int[] sentenceIntro = {0,0,0,0,0,0,0,0};
-    private int[] sentence1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] sentence2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] transition1 = {0,0,0,0,0,0,0,0};
-    private int[] sentence3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] sentence4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
     void Start()
     {
-        currentSentence = sentenceIntro;
+        currentSentence = musicBackground.sentenceIntro;
         currentSentenceLength = currentSentence.GetLength(0);
 
         GetComponent<AudioSource>().clip = musicBackground.mucic;
@@ -54,8 +47,9 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
+                    //UPDATE TOWERS
                 }
-                //UPDATE TOWERS
+                
                 if (i % 3 == 0)
                 {
                     monsterManager.addMonster();
@@ -63,7 +57,7 @@ public class GameManager : MonoBehaviour
             }
             currentSentence = nextSentence;
             
-            //UPDATE NEXT SENTENCE KNOWING PROGRESSION
+            // GET NEXT SENTENCE
 
         }
     }
