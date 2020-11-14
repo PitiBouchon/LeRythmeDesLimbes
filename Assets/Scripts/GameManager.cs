@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     // Monsters
     public MonsterManager monsterManager;
+    public TurretManager turretManager;
 
     // Music
     private AudioMixer audioMixer;
@@ -25,9 +28,9 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
-    public TurretBasic lonelyTurret;
-
     public int maxHP = 20;
+    public Text HPText;
+
 
     void Start()
     {
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void loseLife()
     {
         maxHP-=1;
+        HPText.text = maxHP.ToString();
         if (maxHP <=0) {
             SceneManager.LoadScene("MainMenu");
         }
@@ -53,7 +57,7 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    lonelyTurret.TempoUpdate();
+                    //turretManager.TempoUpdate();
                 }
                 
 
