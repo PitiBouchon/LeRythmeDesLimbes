@@ -78,10 +78,32 @@ public class MonsterManager : MonoBehaviour
         updateSoulsText(friendlySoulsText, friendlySouls);
     }
 
+    public int getFriendlySouls()
+    {
+        return friendlySouls;
+    }
+
+    public void setFriendlySouls(int friendlySoulsToSet)
+    {
+        friendlySouls = friendlySoulsToSet;
+        updateSoulsText(friendlySoulsText, friendlySouls);
+    }
+
 
     public void addEnemySouls()
     {
         enemySouls += 1;
+        updateSoulsText(enemySoulsText, enemySouls);
+    }
+
+    public int getEnemySouls()
+    {
+        return enemySouls;
+    }
+
+    public void setEnemySouls(int enemySoulsToSet)
+    {
+        enemySouls = enemySoulsToSet;
         updateSoulsText(enemySoulsText, enemySouls);
     }
 }

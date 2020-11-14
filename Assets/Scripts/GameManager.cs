@@ -12,41 +12,60 @@ public class GameManager : MonoBehaviour
     public MusicObject musicBackground;
     private AudioMixer audioMixer;
 
-    // Timer
-    private float timerTempo;
-    private int timerCount;
+    [SerializeField] private float pulse;
+
+    private int[] currentSentence;
+
+    private float currentSentenceLength;
+
+    private int[] nextSentence;
+
+    private int progression = 0; // A MODIFIER LORSQUE UNE AME GENTILLE SURVIT JUSQU AU BOUT
+
+    private bool isPlaying = true;
+
+    private int[] sentenceIntro = {0,0,0,0,0,0,0,0};
+    private int[] sentence1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private int[] sentence2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private int[] transition1 = {0,0,0,0,0,0,0,0};
+    private int[] sentence3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private int[] sentence4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     void Start()
     {
+        currentSentence = sentenceIntro;
+        currentSentenceLength = currentSentence.GetLength(0);
+
         GetComponent<AudioSource>().clip = musicBackground.mucic;
         GetComponent<AudioSource>().volume = musicBackground.volume;
-        timerTempo = musicBackground.offset;
+        pulse = musicBackground.tempo/2;
+
         GetComponent<AudioSource>().Play();
+        StartCoroutine(UpdateRythm());
     }
 
-    void Update()
+    private IEnumerator UpdateRythm()  // On fonctionne avec une coroutine pour l'instant il faudra peut-être utiliser Invoke Reapeating et gérer les asynchronismes
     {
-        if (timerTempo < musicBackground.tempo)
+        while (isPlaying)
         {
-            timerTempo += Time.deltaTime;
-        }
-        else
-        {
-            timerTempo = 0;
-            timerCount += 1;
-            tempoUpdate();
+            for (var i = 0 ; i<currentSentenceLength ; i++)
+            {
+                yield return new WaitForSecondsRealtime(pulse);
+                if (currentSentence[i] == 1){
+                    monsterManager.updateMonsters();
+                    //UPDATE ALLIES
+                }
+                //UPDATE TOWERS
+                if (i % 3 == 0)
+                {
+                    monsterManager.addMonster();
+                }
+            }
+            currentSentence = nextSentence;
+            
+            //UPDATE NEXT SENTENCE KNOWING PROGRESSION
+
         }
     }
 
-    void tempoUpdate()
-    {
-        Debug.Log("Update everything");
-        monsterManager.updateMonsters();
-
-        // POUR TESTER LE SPAWN DE MONSTRES
-        if (timerCount % 3 == 0)
-        {
-            monsterManager.addMonster();
-        }
-    }
 }
