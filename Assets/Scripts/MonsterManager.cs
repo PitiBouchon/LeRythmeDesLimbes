@@ -88,6 +88,8 @@ public class MonsterManager : MonoBehaviour
     public int enemySouls = 0;
     public int friendlySouls = 0;
 
+    public GameManager gameManager;
+
     void Awake()
     {
         path1 = tileMap.gameObject.GetComponent<TilemapPath>().path1;
@@ -222,5 +224,10 @@ public class MonsterManager : MonoBehaviour
     {
         enemySouls = enemySoulsToSet;
         updateSoulsText(enemySoulsText, enemySouls);
+    }
+
+    public void loseLife()
+    {
+        gameManager.loseLife();
     }
 }

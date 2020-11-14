@@ -20,7 +20,14 @@ public class MonsterScript : MonoBehaviour
         actualIndex += tileSpeed;
         if (actualIndex >= path.Count)
         {
-            Debug.Log("Path ended");
+            if (friendly)
+            {
+                monsterManager.addFriendlySouls();
+            }
+            else
+            {
+                monsterManager.loseLife();
+            }
             Destroy(gameObject);
         }
         else
@@ -33,7 +40,7 @@ public class MonsterScript : MonoBehaviour
     void die()
     {
         if(friendly)
-            {
+        {
             Debug.Log("Die friendly");
         }
             else
