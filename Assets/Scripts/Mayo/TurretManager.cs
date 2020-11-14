@@ -64,6 +64,7 @@ public class TurretManager : MonoBehaviour
             case TurretType.STANDARD:
                 TurretBasic turret = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
                 basicTurrets.Add(turret);
+                monsterManager.setFriendlySouls(monsterManager.getFriendlySouls()-turret.buildCost);
                 break;
             case TurretType.AOE:
                 break;

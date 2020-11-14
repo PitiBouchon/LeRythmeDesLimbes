@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     // Monsters
     public MonsterManager monsterManager;
+    public TurretManager turretManager;
 
     // Music
     private AudioMixer audioMixer;
@@ -20,13 +24,15 @@ public class GameManager : MonoBehaviour
 
     private int[] nextSentence;
 
-    private int progression = 0; // A MODIFIER LORSQUE UNE AME GENTILLE SURVIT JUSQU AU BOUT
+    public int progression = 0;
 
     private bool isPlaying = true;
 
-    public TurretBasic lonelyTurret;
-
     public int maxHP = 20;
+    public Text HPText;
+
+    public int goNext;
+
 
     void Start()
     {
@@ -38,8 +44,9 @@ public class GameManager : MonoBehaviour
     public void loseLife()
     {
         maxHP-=1;
+        HPText.text = maxHP.ToString();
         if (maxHP <=0) {
-            Debug.Log("QUIT - LOST");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
@@ -52,13 +59,19 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    lonelyTurret.TempoUpdate();
+                    turretManager.TempoUpdate();
+                    if (progression == 10)
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                    }
                 }
                 
 
                 yield return new WaitForSecondsRealtime(pulse);
             }
-            currentSentence = musicManager.getNextSentence(true); // VARIER L ARGUMENT SELON LA PROGRESSION
+            
+            currentSentence = musicManager.getNextSentence(true);
+            
             currentSentenceLength = currentSentence.GetLength(0);
         }
     }

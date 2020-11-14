@@ -19,7 +19,7 @@ public abstract class Turret : MonoBehaviour
     [SerializeField] protected bool isOn = true;
 
     [Space][Header("Souls costs")]
-    public int buildCost = 10;
+    public int buildCost = 3;
     public int upgradeCost = 5;
     public int sellPrice = 3;
     [SerializeField] protected int rank = 0;
