@@ -17,26 +17,26 @@ public abstract class Turret : MonoBehaviour
     public int buildCost = 10;
     public int upgradeCost = 5;
     public int sellPrice = 3;
+    [SerializeField] private int rank = 0;
 
     [Space][Header("UI")]
     [SerializeField] private Canvas turretMenu;
-    [SerializeField] private CameraManager cameraManager;
-
-    [Space][Header("Sprites")]
-    [SerializeField] private Sprite standardSprite;
-    [SerializeField] private Sprite hoverSprite;
-
-
-
-    [SerializeField] private int rank = 0;
-    [SerializeField] private bool isOn = true;
-    
-    private MonsterManager monsterManager;
-    private SpriteRenderer spriteRenderer;
+    private CameraManager cameraManager;
     private UpgradeButton upgradeButton;
     private SellButton sellButton;
     private Text upgradeCostText;
     private Text sellPriceText;
+
+    [Space][Header("Sprites")]
+    [SerializeField] private Sprite standardSprite;
+    [SerializeField] private Sprite hoverSprite;
+    private SpriteRenderer spriteRenderer;
+
+
+    [SerializeField] private bool isOn = true;
+
+    
+    private MonsterManager monsterManager;
 
     private bool isMenuOn = false;
 
@@ -73,13 +73,16 @@ public abstract class Turret : MonoBehaviour
 
     public void Upgrade()
     {
-        attackDamage++;
-        attackRate--;
-        monsterManager.setEnemySouls(monsterManager.getEnemySouls() - upgradeCost);
-        rank++;
-        upgradeCost += 5;
-        sellPrice += 3;
-        UpdateButtons();
+        if (rank < 2)
+        {
+            attackDamage++;
+            attackRate--;
+            monsterManager.setEnemySouls(monsterManager.getEnemySouls() - upgradeCost);
+            rank++;
+            upgradeCost += 5;
+            sellPrice += 3;
+            UpdateButtons();
+        }
     }
 
     public void Sell()

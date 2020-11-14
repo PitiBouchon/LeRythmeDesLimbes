@@ -10,6 +10,6 @@ public class OptionMenu : MonoBehaviour
 
     public void setVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("volume", -(80-40*Mathf.Log10(volume)));
     }
 }

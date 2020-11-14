@@ -569,13 +569,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters: []
-  tileMap: {fileID: 85977249}
-  path1: []
+  tileMap: {fileID: 2712300938795733673, guid: 5932132f0862ab4498443a1571523f44, type: 3}
   tilePath: tilesetTest_0
   enemySoulsText: {fileID: 835284346}
   friendlySoulsText: {fileID: 428122068}
-  enemySouls: 30
-  friendlySouls: 30
+  enemySouls: 0
+  friendlySouls: 0
 --- !u!4 &1700938310
 Transform:
   m_ObjectHideFlags: 0

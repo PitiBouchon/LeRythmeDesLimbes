@@ -95,5 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: []
-  health: 3
+  health: 1
   tileSpeed: 1
+  friendly: 0
+  monsterManager: {fileID: 0}
