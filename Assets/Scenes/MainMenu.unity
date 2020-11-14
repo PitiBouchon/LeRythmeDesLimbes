@@ -331,6 +331,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 262209553}
   m_OnClick:
     m_PersistentCalls:
+<<<<<<< HEAD
       m_Calls:
       - m_Target: {fileID: 210483214}
         m_MethodName: QuitGame
@@ -343,6 +344,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+=======
+      m_Calls: []
+>>>>>>> a273bf95b5defcc4904e89f008d06600896be0ae
 --- !u!114 &262209553
 MonoBehaviour:
   m_ObjectHideFlags: 0
