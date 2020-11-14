@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UpdateRythm());
     }
 
-    private IEnumerator UpdateRythm()  //On fonctionne avec une coroutine pour l'instant il faudra peut-être utiliser Invoke Reapeating et gérer les asynchronismes
+    private IEnumerator UpdateRythm()  // On fonctionne avec une coroutine pour l'instant il faudra peut-être utiliser Invoke Reapeating et gérer les asynchronismes
     {
         while (isPlaying)
         {
