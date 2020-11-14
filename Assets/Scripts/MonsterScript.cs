@@ -53,4 +53,12 @@ public class MonsterScript : MonoBehaviour
             die();
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            getHit();
+        }
+    }
 }
