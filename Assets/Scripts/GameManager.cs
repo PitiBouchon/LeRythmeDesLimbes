@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentSentence = musicManager.getFirstSentence(1);
+        currentSentence = musicManager.getFirstSentence(2);
         currentSentenceLength = currentSentence.GetLength(0);
         StartCoroutine(UpdateRythm());
     }
