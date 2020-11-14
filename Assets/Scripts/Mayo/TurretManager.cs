@@ -20,14 +20,14 @@ public class TurretManager : MonoBehaviour
 
 
     private MonsterManager monsterManager;
-    private List<Turret> turrets;
+    private List<TurretBasic> basicTurrets;
 
     private void Start()
     {
         monsterManager = FindObjectOfType<MonsterManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         camera = FindObjectOfType<Camera>();
-        turrets = new List<Turret>();
+        basicTurrets = new List<TurretBasic>();
     }
 
     private void Update()
@@ -62,7 +62,8 @@ public class TurretManager : MonoBehaviour
         switch (type)
         {
             case TurretType.STANDARD:
-                Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
+                TurretBasic turret = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
+                basicTurrets.Add(turret);
                 break;
             case TurretType.AOE:
                 break;
@@ -76,6 +77,14 @@ public class TurretManager : MonoBehaviour
         isMenuOn = false;
         cameraManager.shouldMove = true;
         desiredPlaceMarker.gameObject.SetActive(false);
+    }
+
+    public void TempoUpdate()
+    {
+        foreach (TurretBasic t in basicTurrets)
+        {
+            t.TempoUpdate();
+        }
     }
 }
 
