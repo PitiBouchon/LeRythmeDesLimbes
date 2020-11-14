@@ -10,6 +10,9 @@ public class MusicObject : ScriptableObject
     [SerializeField]
     [Range(0, 1)]
     public float volume;
-    public float tempo;
+    public float tempo = 0.5f;
     public float offset = 0;
+
+    
+
 }
