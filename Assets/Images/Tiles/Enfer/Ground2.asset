@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b3f7e55b468584691c69738070d86a, type: 3}
-  m_Name: Level_1_percu
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Ground2
   m_EditorClassIdentifier: 
-  musicName: 
-  mucic: {fileID: 8300000, guid: 9f1d4c8064fd0f847a0205c6635b736c, type: 3}
-  volume: 0.05
-  tempo: 1
-  offset: 0
-  tempochart: 00000000000000000000000000000000
+  m_AnimatedSprites: []
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
