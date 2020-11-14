@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
     // Music
     public MusicObject musicBackground;
     private AudioMixer audioMixer;
+    private int[] sentenceIntro = {0,0,0,0,0,0,0};
+    private int[] sentence1 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+    private int[] sentence2 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+    private int[] sentence3 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+    private int[] transition1 = {0,0,0,0,0,0,0,0};
+    private int[] sentence4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     [SerializeField] private float pulse;
 
@@ -24,23 +30,17 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
-    private int[] sentenceIntro = {1,1,1,1,1,1,1,1};
-    private int[] sentence1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] sentence2 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] transition1 = {0,0,0,0,0,0,0,0};
-    private int[] sentence3 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    private int[] sentence4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
     void Start()
     {
         currentSentence = sentenceIntro;
         currentSentenceLength = currentSentence.GetLength(0);
+        nextSentence = sentence1;
 
         GetComponent<AudioSource>().clip = musicBackground.mucic;
         GetComponent<AudioSource>().volume = musicBackground.volume;
         pulse = musicBackground.tempo/2;
-
         GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
         StartCoroutine(UpdateRythm());
     }
 
@@ -54,16 +54,17 @@ public class GameManager : MonoBehaviour
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
+                    //UPDATE TOWERS
                 }
-                //UPDATE TOWERS
-                if (i % 3 == 0)
+                
+                if (i == 0)
                 {
                     monsterManager.addMonster();
                 }
             }
-            //currentSentence = nextSentence;
-            
-            //UPDATE NEXT SENTENCE KNOWING PROGRESSION
+            currentSentence = nextSentence;
+            currentSentenceLength = currentSentence.GetLength(0);
+            nextSentence = sentence1;
 
         }
     }

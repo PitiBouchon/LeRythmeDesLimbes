@@ -25,7 +25,7 @@ public class MonsterScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Move forward");
+            //Debug.Log("Move forward");
             transform.position = path[actualIndex] + Vector2.one * 0.5f;
         }
     }
