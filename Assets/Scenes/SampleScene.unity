@@ -5847,6 +5847,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: -5, y: 3, z: 0}
+>>>>>>> 4d5ff0d6200274536d7ea998871fbc28b60c083f
     second:
       serializedVersion: 2
       m_TileIndex: 0

@@ -26,12 +26,21 @@ public class GameManager : MonoBehaviour
 
     public TurretBasic lonelyTurret;
 
+    public int maxHP = 20;
 
     void Start()
     {
         currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
         currentSentenceLength = currentSentence.GetLength(0);
         StartCoroutine(UpdateRythm());
+    }
+
+    public void loseLife()
+    {
+        maxHP-=1;
+        if (maxHP <=0) {
+            Debug.Log("QUIT - LOST");
+        }
     }
 
     private IEnumerator UpdateRythm()  // On fonctionne avec une coroutine pour l'instant il faudra peut-être utiliser Invoke Reapeating et gérer les asynchronismes
