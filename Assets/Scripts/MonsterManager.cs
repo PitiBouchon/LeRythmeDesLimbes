@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class MonsterManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class MonsterManager : MonoBehaviour
 
     private Vector2 sizeTileMap;
     private string[,] mapMatrix;
+
+    public Text enemySoulsText;
+    public Text friendlySoulsText;
+    private int enemySouls = 0;
+    private int friendlySouls = 0;
 
     void OnDrawGizmosSelected() // Affiche des ronds sur le chemins
     {
@@ -59,5 +65,23 @@ public class MonsterManager : MonoBehaviour
         {
             monsterScript.updatePosition();
         }
+    }
+
+    void updateSoulsText(Text text, int number)
+    {
+        text.text = number.ToString();
+    }
+
+    public void addFriendlySouls()
+    {
+        friendlySouls += 1;
+        updateSoulsText(friendlySoulsText, friendlySouls);
+    }
+
+
+    public void addEnemySouls()
+    {
+        enemySouls += 1;
+        updateSoulsText(enemySoulsText, enemySouls);
     }
 }

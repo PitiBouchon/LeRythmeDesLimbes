@@ -8,15 +8,20 @@ public class MonsterScript : MonoBehaviour
     public int health = 3;
     public int tileSpeed = 1;
     public bool friendly = false;
+    public MonsterManager monsterManager;
     private int actualIndex = 0;
 
+    void Start()
+    {
+        monsterManager = transform.parent.GetComponent<MonsterManager>(); // A CHANGER SI ON CHANGE L'IMPLEMENTATION
+    }
     public void updatePosition()
     {
         actualIndex += tileSpeed;
         if (actualIndex >= path.Count)
         {
             Debug.Log("Path ended");
-            Destroy(gameObject);
+            die();
         }
         else
         {
@@ -25,21 +30,27 @@ public class MonsterScript : MonoBehaviour
         }
     }
 
+    void die()
+    {
+        if(friendly)
+            {
+            Debug.Log("Die friendly");
+        }
+            else
+        {
+            Debug.Log("Die enemy");
+            monsterManager.addEnemySouls();
+        }
+
+        Destroy(gameObject);
+    }
+
     public void getHit()
     {
         health -= 1;
         if (health <= 0)
         {
-            if (friendly)
-            {
-                Debug.Log("Die friendly");
-            }
-            else
-            {
-                Debug.Log("Die enemy");
-            }
-            
-            Destroy(gameObject);
+            die();
         }
     }
 }
