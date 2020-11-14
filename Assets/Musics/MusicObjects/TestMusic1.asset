@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicName: 
   mucic: {fileID: 8300000, guid: 8af3ef25042ebac41b25598156a783a7, type: 3}
-  volume: 0.05
+  volume: 0.5
   tempo: 1
   offset: 0
+  tempochart: 00000000000000000000000000000000

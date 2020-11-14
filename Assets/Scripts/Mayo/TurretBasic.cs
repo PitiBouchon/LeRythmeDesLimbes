@@ -1,16 +1,72 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 
 public class TurretBasic : Turret, TurretInterface
 {
-    public void Attack()
+    [SerializeField] private Sprite normalTile;
+    [SerializeField] private Sprite attackedTile;
+
+    private Tile attackTile;
+    private BoxCollider2D attackCollider;
+
+    private new void Start()
     {
-        
+        base.Start();
+        //attackTile = monsterManager.tileMap.GetTile<Tile>(new Vector3Int((position + orientation).x, (position + orientation).y, 0));
+        attackCollider = transform.Find("Attack").GetComponent<BoxCollider2D>();
+        attackCollider.transform.Translate(new Vector3(orientation.x, orientation.y));
+        attackCollider.size = monsterManager.tileMap.cellSize * 0.8f;
+        //attackTile.sprite = normalTile;
+        attackCollider.gameObject.SetActive(false);
     }
 
-    public void tempoUpdate()
+    public void Attack()
     {
-        Attack();
+        attackCollider.gameObject.SetActive(true);
+        //attackTile.sprite = attackedTile;
+    }
+
+    private void ResetAttack()
+    {
+        attackCollider.gameObject.SetActive(false);
+        //if (attackTile.sprite != normalTile)
+        //{
+        //    attackTile.sprite = normalTile;
+        //}
+    }
+
+    public void TempoUpdate()
+    {
+        if (!permaAttack)
+        {
+            ResetAttack();
+            if (isOn) 
+            {
+                if (attackLoad == attackRate-1)
+                {
+                    Attack();
+                    attackLoad = 0;
+                }
+                else
+                {
+                    attackLoad++;
+                }
+            }
+        }
+        else
+        {
+            Attack();
+        }
+    }
+
+    private new void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TempoUpdate();
+        }
     }
 }

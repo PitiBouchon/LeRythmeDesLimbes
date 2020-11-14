@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterScript : MonoBehaviour
 {
     [HideInInspector] public List<Vector2> path;
-    public int health = 3;
+    public int health = 1;
     public int tileSpeed = 1;
     public bool friendly = false;
     [HideInInspector] public MonsterManager monsterManager;
@@ -21,7 +21,7 @@ public class MonsterScript : MonoBehaviour
         if (actualIndex >= path.Count)
         {
             Debug.Log("Path ended");
-            die();
+            Destroy(gameObject);
         }
         else
         {
@@ -51,6 +51,14 @@ public class MonsterScript : MonoBehaviour
         if (health <= 0)
         {
             die();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            getHit();
         }
     }
 }

@@ -9,16 +9,10 @@ public class GameManager : MonoBehaviour
     public MonsterManager monsterManager;
 
     // Music
-    public MusicObject musicBackground;
     private AudioMixer audioMixer;
-    private int[] sentenceIntro = {0,0,0,0,0,0,0};
-    private int[] sentence1 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-    private int[] sentence2 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-    private int[] sentence3 = {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
-    private int[] transition1 = {0,0,0,0,0,0,0,0};
-    private int[] sentence4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    public MusicManager musicManager;
 
-    [SerializeField] private float pulse;
+    [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
 
@@ -30,17 +24,13 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
+    public TurretBasic lonelyTurret;
+
+
     void Start()
     {
-        currentSentence = sentenceIntro;
+        currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
         currentSentenceLength = currentSentence.GetLength(0);
-        nextSentence = sentence1;
-
-        GetComponent<AudioSource>().clip = musicBackground.mucic;
-        GetComponent<AudioSource>().volume = musicBackground.volume;
-        pulse = musicBackground.tempo/2;
-        GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().loop = true;
         StartCoroutine(UpdateRythm());
     }
 
@@ -50,22 +40,17 @@ public class GameManager : MonoBehaviour
         {
             for (var i = 0 ; i<currentSentenceLength ; i++)
             {
-                yield return new WaitForSecondsRealtime(pulse);
                 if (currentSentence[i] == 1){
                     monsterManager.updateMonsters();
                     //UPDATE ALLIES
-                    //UPDATE TOWERS
+                    lonelyTurret.TempoUpdate();
                 }
                 
-                if (i == 0)
-                {
-                    monsterManager.addMonster();
-                }
-            }
-            currentSentence = nextSentence;
-            currentSentenceLength = currentSentence.GetLength(0);
-            nextSentence = sentence1;
 
+                yield return new WaitForSecondsRealtime(pulse);
+            }
+            currentSentence = musicManager.getNextSentence(true); // VARIER L ARGUMENT SELON LA PROGRESSION
+            currentSentenceLength = currentSentence.GetLength(0);
         }
     }
 
