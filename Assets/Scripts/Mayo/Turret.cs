@@ -10,10 +10,8 @@ public abstract class Turret : MonoBehaviour
     protected Vector2Int position;
 
     [Space][Header("Attack parameters")]
-    [SerializeField] protected int attackDamage = 1;
     [SerializeField] protected int attackRate = 2;
     [SerializeField] protected int attackLoad = 0;
-    [SerializeField] protected int attackDamageIncreaseOnRankUp = 1;
     [SerializeField] protected int attackRateIncreaseOnRankUp = 1;
     [SerializeField] protected bool permaAttack = false;
     [SerializeField] protected bool isOn = true;
@@ -70,6 +68,13 @@ public abstract class Turret : MonoBehaviour
                 cameraManager.shouldMove = true;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            turretMenu.gameObject.SetActive(false);
+            isMenuOn = false;
+            cameraManager.shouldMove = true;
+        }
     }
 
     public void TurnOnOff()
@@ -82,7 +87,6 @@ public abstract class Turret : MonoBehaviour
     {
         if (rank < 2)
         {
-            attackDamage += attackDamageIncreaseOnRankUp;
             if (attackRate > 1)
             {
                 attackRate -= attackRateIncreaseOnRankUp;

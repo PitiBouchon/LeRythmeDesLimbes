@@ -9,13 +9,17 @@ public class TurretManager : MonoBehaviour
     public TurretBasic basicTurret;
     public TurretSpecial specialTurret;
 
+    [Header("Tile")]
+    public TilemapManager tileMapManager;
 
     [Space][Header("UI")]
     [SerializeField] private Canvas turretBuildingPanel;
     [SerializeField] private BuildBasicTurretButton basicTurretButton;
+    [SerializeField] private BuildSpecialTurretButton specialTurretButton;
     private CameraManager cameraManager;
-    private bool isMenuOn = false;
-    private Vector2 desiredPosition;
+    [SerializeField] private bool isMenuOn = false;
+    public Vector2 desiredPosition;
+    public TileInfo desiredPositionInfo;
     private Camera camera;
 
 
@@ -27,6 +31,7 @@ public class TurretManager : MonoBehaviour
         monsterManager = FindObjectOfType<MonsterManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         camera = FindObjectOfType<Camera>();
+        tileMapManager = FindObjectOfType<TilemapManager>();
         turrets = new List<Turret>();
     }
 
@@ -34,10 +39,12 @@ public class TurretManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (!isMenuOn)
-            {
-                desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-            }
+            desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            TileInfo tileInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
+            Vector3 mousePos = Input.mousePosition;
+            Debug.Log(tileInfo.tileType);
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            turretBuildingPanel.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
             turretBuildingPanel.gameObject.SetActive(true);
             isMenuOn = true;
             cameraManager.shouldMove = false;
@@ -45,12 +52,19 @@ public class TurretManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isMenuOn)
         {
-            if (!basicTurretButton.isHovered)
+            if (!(basicTurretButton.isHovered || specialTurretButton.isHovered))
             {
                 turretBuildingPanel.gameObject.SetActive(false);
                 isMenuOn = false;
                 cameraManager.shouldMove = true;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            turretBuildingPanel.gameObject.SetActive(false);
+            isMenuOn = false;
+            cameraManager.shouldMove = true;
         }
     }
 

@@ -1030,19 +1030,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {x: 1, y: 0}
-  attackDamage: 1
   attackRate: 2
   attackLoad: 0
-  attackDamageIncreaseOnRankUp: 1
   attackRateIncreaseOnRankUp: 1
   permaAttack: 0
   isOn: 1
   buildCost: 3
   upgradeCost: 5
   sellPrice: 3
-  rank: 0
+  rank: 1
   turretMenu: {fileID: 1128872125177641000}
   animator: {fileID: 7188505662191806616}
+  turretType: 0
   normalTile: {fileID: -2510476293373519475, guid: 88b187ec528abbf4c91c394a2eac83a7,
     type: 3}
   attackedTile: {fileID: 6341370224737695196, guid: 69c7148c88500714d9ba7055f7fc7845,
@@ -1071,7 +1070,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
 --- !u!95 &7188505662191806616
 Animator:

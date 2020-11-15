@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterScript : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class MonsterScript : MonoBehaviour
     public Sprite face;
 
     [HideInInspector] public List<Vector2> path;
-    public int health = 1;
+    public int maxHealth = 1;
+    private int health;
     public bool friendly = false;
     [HideInInspector] public MonsterManager monsterManager;
     private int actualIndex = 0;
+
+    public RectTransform healthUI;
 
     private bool droite = true;
     private bool gauche;
@@ -24,6 +28,7 @@ public class MonsterScript : MonoBehaviour
     void Start()
     {
         monsterManager = transform.parent.GetComponent<MonsterManager>(); // A CHANGER SI ON CHANGE L'IMPLEMENTATION
+        health = maxHealth;
     }
     public void updatePosition()
     {
@@ -97,6 +102,11 @@ public class MonsterScript : MonoBehaviour
         if (health <= 0)
         {
             die();
+        }
+        if (healthUI != null)
+        {
+            float size = (float)health / (float)maxHealth * 100f;
+            healthUI.sizeDelta = new Vector2(size, healthUI.sizeDelta.y);
         }
     }
 

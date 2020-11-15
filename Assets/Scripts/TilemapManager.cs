@@ -4,27 +4,6 @@ using UnityEngine.Tilemaps;
 
 public class TilemapManager : MonoBehaviour
 {
-    public enum TileType
-    {
-        Ground,
-        Path,
-        Unusable
-    }
-
-    public struct TileInfo
-    {
-        public TileBase animTile;
-        public TileType tileType;
-        public bool willBeAttacked;
-
-        public TileInfo(TileBase animTile, TileType tileType, bool willBeAttacked)
-        {
-            this.animTile = animTile;
-            this.tileType = tileType;
-            this.willBeAttacked = willBeAttacked;
-        }
-    }
-
     public Tilemap tileMap;
 
     public List<string> tilePathName;
@@ -36,8 +15,6 @@ public class TilemapManager : MonoBehaviour
     [HideInInspector]
     public TileInfo[,] mapMatrix;
     private BoundsInt mapBounds;
-
-    private float timer = 1;
 
     void SetMatrix()
     {
@@ -59,7 +36,7 @@ public class TilemapManager : MonoBehaviour
                 {
                     AnimatedTile animTile = tileMap.GetTile<AnimatedTile>(new Vector3Int(x, y, 0));
                     TileType tileType;
-                    if (tilePathName.Contains(tile.name))
+                    if (animTile != null && animTile.name.StartsWith("Path"))
                     {
                         tileType = TileType.Path;
                     }
@@ -107,13 +84,25 @@ public class TilemapManager : MonoBehaviour
         }
         tileMap.RefreshAllTiles();
     }
+}
 
-    // void Update()
-    // {
-    //     if (timer < Time.time)
-    //     {
-    //         updateTiles();
-    //         timer = Time.time + 1;
-    //     }
-    // }
+public enum TileType
+{
+    Ground,
+    Path,
+    Unusable
+}
+
+public struct TileInfo
+{
+    public TileBase animTile;
+    public TileType tileType;
+    public bool willBeAttacked;
+
+    public TileInfo(TileBase animTile, TileType tileType, bool willBeAttacked)
+    {
+        this.animTile = animTile;
+        this.tileType = tileType;
+        this.willBeAttacked = willBeAttacked;
+    }
 }
