@@ -17,7 +17,6 @@ public class TurretBasic : Turret, TurretInterface
     private new void Start()
     {
         base.Start();
-        //attackTile = monsterManager.tileMap.GetTile<Tile>(new Vector3Int((position + orientation).x, (position + orientation).y, 0));
         attackColliderRight = transform.Find("AttackRight").GetComponent<BoxCollider2D>();
         attackColliderLeft = transform.Find("AttackLeft").GetComponent<BoxCollider2D>();
         attackColliderUp = transform.Find("AttackUp").GetComponent<BoxCollider2D>();
@@ -30,8 +29,10 @@ public class TurretBasic : Turret, TurretInterface
         attackColliderLeft.size = monsterManager.tileMap.cellSize * 0.8f;
         attackColliderUp.size = monsterManager.tileMap.cellSize * 0.8f;
         attackColliderDown.size = monsterManager.tileMap.cellSize * 0.8f;
-        //attackTile.sprite = normalTile;
         attackColliderRight.gameObject.SetActive(false);
+        attackColliderLeft.gameObject.SetActive(false);
+        attackColliderUp.gameObject.SetActive(false);
+        attackColliderDown.gameObject.SetActive(false);
     }
 
     public void Attack()
@@ -40,7 +41,6 @@ public class TurretBasic : Turret, TurretInterface
         attackColliderLeft.gameObject.SetActive(true);
         attackColliderUp.gameObject.SetActive(true);
         attackColliderDown.gameObject.SetActive(true);
-        //attackTile.sprite = attackedTile;
     }
 
     private void ResetAttack()
@@ -49,17 +49,16 @@ public class TurretBasic : Turret, TurretInterface
         attackColliderLeft.gameObject.SetActive(false);
         attackColliderUp.gameObject.SetActive(false);
         attackColliderDown.gameObject.SetActive(false);
-        //if (attackTile.sprite != normalTile)
-        //{
-        //    attackTile.sprite = normalTile;
-        //}
     }
 
     public void TempoUpdate()
     {
         if (!permaAttack)
         {
-            ResetAttack();
+            if (this.gameObject != null)
+            {
+                ResetAttack();
+            }
             if (isOn) 
             {
                 if (attackLoad == attackRate-1)
