@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class TurretBasic : Turret, TurretInterface
 {
-    [SerializeField] private Sprite normalTile;
-    [SerializeField] private Sprite attackedTile;
-
-    private Tile attackTile;
     private BoxCollider2D attackColliderRight;
     private BoxCollider2D attackColliderLeft;
     private BoxCollider2D attackColliderUp;
