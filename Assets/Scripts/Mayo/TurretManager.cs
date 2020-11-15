@@ -39,6 +39,9 @@ public class TurretManager : MonoBehaviour
             {
                 desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
             }
+            Vector3 mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            turretBuildingPanel.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
             turretBuildingPanel.gameObject.SetActive(true);
             isMenuOn = true;
             cameraManager.shouldMove = false;
