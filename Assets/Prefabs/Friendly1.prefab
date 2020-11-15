@@ -128,9 +128,10 @@ MonoBehaviour:
   dos: {fileID: 5465401462441643804, guid: 28a2859063caae448b48907629e64156, type: 3}
   face: {fileID: 24231930502025318, guid: 28a2859063caae448b48907629e64156, type: 3}
   path: []
-  health: 1
+  maxHealth: 2
   friendly: 1
   monsterManager: {fileID: 0}
+  healthUI: {fileID: 0}
 --- !u!50 &4486525287476872731
 Rigidbody2D:
   serializedVersion: 4
