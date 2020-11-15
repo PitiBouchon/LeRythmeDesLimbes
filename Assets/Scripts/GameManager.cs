@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     // Music
     private AudioMixer audioMixer;
     public MusicManager musicManager;
+    public BeatManager beatManager;
 
     public LevelInfos levelInfos;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
+        beatManager.loadSentence(currentSentence);
     }
 
 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
             tempoCounter += Time.deltaTime;
             if (tempoCounter >= pulse)
             {
+                beatManager.UpdateBeat();
                 if (currentSentence[sentenceIndice] == 1)
                 {
                     monsterManager.updateMonsters();
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
                 if (sentenceIndice >= currentSentenceLength)
                 {
                     currentSentence = musicManager.getNextSentence(goNext);
+                    beatManager.loadSentence(currentSentence);
                     currentSentenceLength = currentSentence.GetLength(0);
                     sentenceIndice = 0;
                     goNext = false;

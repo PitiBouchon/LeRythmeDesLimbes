@@ -21,11 +21,13 @@ public class BeatManager : MonoBehaviour
     private int maxBeats;
     [SerializeField]
     private int offset;
+    [SerializeField]
+    private int offsetY;
 
     private void Start()
     {
-        end_r.transform.position = new Vector3(offset, end_r.transform.position.y, end_r.transform.position.z);
-        end_w.transform.position = new Vector3(offset, end_r.transform.position.y, end_r.transform.position.z);
+        end_r.transform.position = new Vector3(offset, offsetY, end_r.transform.position.z);
+        end_w.transform.position = new Vector3(offset, offsetY, end_r.transform.position.z);
     }
 
     void Update()
@@ -60,7 +62,7 @@ public class BeatManager : MonoBehaviour
             if (sentence[i] == 1) beats.Add(Instantiate(beat));
             else beats.Add(Instantiate(blank));
             beats[i].transform.SetParent(GameObject.FindGameObjectWithTag("CanvasBeat").transform, false);
-            beats[i].transform.position = new Vector3(offset - i * distance, 30, 10);
+            beats[i].transform.position = new Vector3(offset - i * distance, offsetY, 10);
             beats[i].transform.localScale += new Vector3(29, 29, 1);
             if (i > maxBeats) beats[i].SetActive(false);
         }
