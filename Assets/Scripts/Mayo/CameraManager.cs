@@ -6,8 +6,8 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField][Range(0, 0.5f)] private float horizontalMovementZone = .25f;
     [SerializeField] [Range(0, 0.5f)] private float verticalMovementZone = .25f;
-    [SerializeField] private float horizontalBoundingBox = 5f;
-    [SerializeField] private float verticalBoundingBox = 5f;
+    [SerializeField] private float horizontalBoundingBox = 10f;
+    [SerializeField] private float verticalBoundingBox = 10f;
     [SerializeField] private float cameraMovementSpeed = 10f;
     [SerializeField] private float cameraZoomSpeed = 10f;
     public bool shouldMove = true;

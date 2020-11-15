@@ -58,14 +58,17 @@ public class TurretManager : MonoBehaviour
     {
         switch (type)
         {
-            case TurretType.STANDARD:
-                TurretBasic turret = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
-                turrets.Add(turret);
-                monsterManager.setFriendlySouls(monsterManager.getFriendlySouls()-turret.buildCost);
+            case TurretType.BASIC:
+                TurretBasic turretB = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
+                turretB.turretType = TurretType.BASIC;
+                turrets.Add(turretB);
+                monsterManager.setFriendlySouls(monsterManager.getFriendlySouls()-turretB.buildCost);
                 break;
-            case TurretType.AOE:
-                break;
-            case TurretType.RANGE:
+            case TurretType.SPECIAL:
+                TurretSpecial turretS = Instantiate(specialTurret, desiredPosition, Quaternion.Euler(orientation), transform);
+                turretS.turretType = TurretType.SPECIAL;
+                turrets.Add(turretS);
+                monsterManager.setFriendlySouls(monsterManager.getFriendlySouls() - turretS.buildCost);
                 break;
             default:
                 break;
@@ -78,17 +81,22 @@ public class TurretManager : MonoBehaviour
 
     public void TempoUpdate()
     {
-        foreach (TurretBasic t in turrets)
+        foreach (Turret t in turrets)
         {
-            t.TempoUpdate();
+            if (t.turretType == TurretType.BASIC)
+            {
+                ((TurretBasic)t).TempoUpdate();
+            }
+            else if (t.turretType == TurretType.SPECIAL)
+            {
+                ((TurretSpecial)t).TempoUpdate();
+            }
         }
     }
 }
 
 public enum TurretType
 {
-    STANDARD,
+    BASIC,
     SPECIAL,
-    AOE,
-    RANGE
 }

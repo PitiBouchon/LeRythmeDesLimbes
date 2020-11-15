@@ -8,4 +8,9 @@ public class TurretSpecial : Turret, TurretInterface
     {
         
     }
+
+    public void TempoUpdate()
+    {
+
+    }
 }

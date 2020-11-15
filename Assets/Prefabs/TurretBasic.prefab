@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 6699632453213745181}
   - component: {fileID: 7188505662191806616}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: TurretBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,7 +1005,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1248784056254802929, guid: 5773978d208997a41b1fc85118bbbdc8,
+  m_Sprite: {fileID: -4098977681330007293, guid: c455e1684bfaefc45ad0f378108be151,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1014,7 +1014,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6699632453213745178
@@ -1083,7 +1083,7 @@ Animator:
   m_GameObject: {fileID: 6699632453213745177}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f73409ab0b935545a594c1b6cd99801, type: 2}
+  m_Controller: {fileID: 9100000, guid: c2ae0bad2c464704781926ab2f144ab9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
