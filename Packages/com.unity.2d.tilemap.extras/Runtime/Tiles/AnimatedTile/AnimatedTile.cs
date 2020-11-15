@@ -25,12 +25,12 @@ namespace UnityEngine.Tilemaps
         /// The minimum possible speed at which the Animation of the Tile will be played.
         /// A speed value will be randomly chosen between the minimum and maximum speed.
         /// </summary>
-        public float m_MinSpeed = 1f;
+        /*public float m_MinSpeed = 1f;*/
         /// <summary>
         /// The maximum possible speed at which the Animation of the Tile will be played.
         /// A speed value will be randomly chosen between the minimum and maximum speed.
         /// </summary>
-        public float m_MaxSpeed = 1f;
+        /*public float m_MaxSpeed = 1f;*/
         /// <summary>
         /// The starting time of this Animated Tile.
         /// This allows you to start the Animation from time in the list of Animated Sprites depending on the 
@@ -48,6 +48,9 @@ namespace UnityEngine.Tilemaps
         /// </summary>
         public Tile.ColliderType m_TileColliderType;
 
+        public int m_SpriteIndex = 0;
+        public Vector3Int m_Position;
+
         /// <summary>
         /// Retrieves any tile rendering data from the scripted tile.
         /// </summary>
@@ -56,11 +59,13 @@ namespace UnityEngine.Tilemaps
         /// <param name="tileData">Data to render the tile.</param>
         public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
         {
+            tileData.sprite = m_AnimatedSprites[m_SpriteIndex];
+            return;
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
             if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
             {
-                tileData.sprite = m_AnimatedSprites[m_AnimatedSprites.Length - 1];
+                tileData.sprite = m_AnimatedSprites[m_AnimatedSprites.Length - 1]; // m_AnimatedSprites[m_SpriteIndex];
                 tileData.colliderType = m_TileColliderType;
             }
         }
@@ -74,10 +79,13 @@ namespace UnityEngine.Tilemaps
         /// <returns>Whether the call was successful.</returns>
         public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
         {
+            tileAnimationData.animatedSprites = new Sprite[] { m_AnimatedSprites[m_SpriteIndex] };
+            return true;
+
             if (m_AnimatedSprites.Length > 0)
             {
-                tileAnimationData.animatedSprites = m_AnimatedSprites;
-                tileAnimationData.animationSpeed = Random.Range(m_MinSpeed, m_MaxSpeed);
+                tileAnimationData.animatedSprites = m_AnimatedSprites; // new Sprite[] { m_AnimatedSprites[m_SpriteIndex] };
+                //tileAnimationData.animationSpeed = Random.Range(m_MinSpeed, m_MaxSpeed);
                 tileAnimationData.animationStartTime = m_AnimationStartTime;
                 if (0 < m_AnimationStartFrame && m_AnimationStartFrame <= m_AnimatedSprites.Length)
                 {
@@ -332,19 +340,19 @@ namespace UnityEngine.Tilemaps
 
             using (new EditorGUI.DisabledScope(tile.m_AnimatedSprites == null || tile.m_AnimatedSprites.Length == 0))
             {
-                float minSpeed = EditorGUILayout.FloatField(Styles.minimumSpeedLabel, tile.m_MinSpeed);
-                float maxSpeed = EditorGUILayout.FloatField(Styles.maximumSpeedLabel, tile.m_MaxSpeed);
-                if (minSpeed < 0.0f)
-                    minSpeed = 0.0f;
+                //float minSpeed = EditorGUILayout.FloatField(Styles.minimumSpeedLabel, tile.m_MinSpeed);
+                //float maxSpeed = EditorGUILayout.FloatField(Styles.maximumSpeedLabel, tile.m_MaxSpeed);
+                //if (minSpeed < 0.0f)
+                //    minSpeed = 0.0f;
 
-                if (maxSpeed < 0.0f)
-                    maxSpeed = 0.0f;
+                //if (maxSpeed < 0.0f)
+                //    maxSpeed = 0.0f;
 
-                if (maxSpeed < minSpeed)
-                    maxSpeed = minSpeed;
+                //if (maxSpeed < minSpeed)
+                //    maxSpeed = minSpeed;
 
-                tile.m_MinSpeed = minSpeed;
-                tile.m_MaxSpeed = maxSpeed;
+                //tile.m_MinSpeed = minSpeed;
+                //tile.m_MaxSpeed = maxSpeed;
 
                 using (new EditorGUI.DisabledScope(tile.m_AnimatedSprites == null 
                                                    || (0 < tile.m_AnimationStartFrame 

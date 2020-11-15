@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     // Monsters
     public MonsterManager monsterManager;
     public TurretManager turretManager;
+    public TilemapManager tilemapManager;
 
     // Music
     private AudioMixer audioMixer;
     public MusicManager musicManager;
+
+    public LevelInfos levelInfos;
 
     [SerializeField] private float pulse = 0.25f;
 
@@ -24,24 +27,71 @@ public class GameManager : MonoBehaviour
 
     private int[] nextSentence;
 
-    public int progression = 0;
+
+    private int progression;
+    private int currentPart;
+
 
     private bool isPlaying = true;
 
     public int maxHP = 20;
     public Text HPText;
 
-    public int goNext;
+    private bool goNext = true;
 
+    private float tempoCounter = -0.35f;
+
+    private int pulseCounter = 0;
+    private int sentenceIndice = 0;
 
     void Start()
     {
         currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
         currentSentenceLength = currentSentence.GetLength(0);
-        StartCoroutine(UpdateRythm());
+        tempoCounter = 0f;
     }
 
-    public void loseLife()
+
+    private void Update(){
+        if (isPlaying)
+        {
+            tempoCounter += Time.deltaTime;
+            if (tempoCounter >= pulse)
+            {
+                if (currentSentence[sentenceIndice] == 1)
+                {
+                    monsterManager.updateMonsters();
+                    turretManager.TempoUpdate();
+                }
+                sentenceIndice++;
+
+                if (sentenceIndice >= currentSentenceLength)
+                {
+                    currentSentence = musicManager.getNextSentence(goNext);
+                    currentSentenceLength = currentSentence.GetLength(0);
+                    sentenceIndice = 0;
+                    goNext = false;
+                    
+                }
+                tempoCounter -= pulse;
+                pulseCounter ++;
+            }
+
+            if (pulseCounter == 4)
+            {
+                tilemapManager.updateTiles();
+                pulseCounter = 0;
+            }
+            
+            
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
+    public void LoseLife()
     {
         maxHP-=1;
         HPText.text = maxHP.ToString();
@@ -50,30 +100,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateRythm()  // On fonctionne avec une coroutine pour l'instant il faudra peut-être utiliser Invoke Reapeating et gérer les asynchronismes
+    public void Progress()
     {
-        while (isPlaying)
+        progression++;
+        goNext = levelInfos.shouldIGoNext(PlayerPrefs.GetInt("levelPlayed"),currentPart,progression);
+        if (goNext)
         {
-            for (var i = 0 ; i<currentSentenceLength ; i++)
+            progression -= levelInfos.getSoulRequired(PlayerPrefs.GetInt("levelPlayed"),currentPart);
+            currentPart++;
+            if (levelInfos.didIWin(PlayerPrefs.GetInt("levelPlayed"),currentPart))
             {
-                if (currentSentence[i] == 1){
-                    monsterManager.updateMonsters();
-                    //UPDATE ALLIES
-                    turretManager.TempoUpdate();
-                    if (progression == 10)
-                    {
-                        SceneManager.LoadScene("MainMenu");
-                    }
-                }
-                
-
-                yield return new WaitForSecondsRealtime(pulse);
+                Win();
             }
-            
-            currentSentence = musicManager.getNextSentence(true);
-            
-            currentSentenceLength = currentSentence.GetLength(0);
         }
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("Bien joué mon grand");
     }
 
 }

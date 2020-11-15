@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField][Range(0, 0.5f)] private float horizontalBox = .25f;
-    [SerializeField] [Range(0, 0.5f)] private float verticalBox = .25f;
+    [SerializeField][Range(0, 0.5f)] private float horizontalMovementZone = .25f;
+    [SerializeField] [Range(0, 0.5f)] private float verticalMovementZone = .25f;
+    [SerializeField] private float horizontalBoundingBox = 10f;
+    [SerializeField] private float verticalBoundingBox = 10f;
     [SerializeField] private float cameraMovementSpeed = 10f;
     [SerializeField] private float cameraZoomSpeed = 10f;
     public bool shouldMove = true;
+    private Vector2 initialPosition;
 
     private Camera camera;
 
     private void Start()
     {
         camera = GetComponent<Camera>();
+        initialPosition = transform.position;
     }
 
     private void Update()
     {
         Vector2 direction = Vector2.zero;
-        float horizontalBoundary = horizontalBox * Screen.width;
-        float verticalBoundary = verticalBox* Screen.height;
+        float horizontalBoundary = horizontalMovementZone * Screen.width;
+        float verticalBoundary = verticalMovementZone* Screen.height;
         if (Input.mousePosition.x < horizontalBoundary)
         {
             direction += Vector2.left;
@@ -42,6 +46,10 @@ public class CameraManager : MonoBehaviour
         if (shouldMove)
         {
             transform.Translate(direction * cameraMovementSpeed * Time.deltaTime);
+            if (transform.position.x - initialPosition.x < - horizontalBoundingBox || transform.position.x - initialPosition.x > horizontalBoundingBox || transform.position.y - initialPosition.y < -verticalBoundingBox || transform.position.y - initialPosition.y > verticalBoundingBox)
+            {
+                transform.Translate(-direction * cameraMovementSpeed * Time.deltaTime);
+            }
         }
         camera.orthographicSize += -Input.mouseScrollDelta.y * cameraZoomSpeed * Time.deltaTime;
     }

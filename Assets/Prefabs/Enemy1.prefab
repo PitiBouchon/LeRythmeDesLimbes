@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b48dbf0fa28a14f4491baa9426b5dcc5, type: 3}
+  m_Sprite: {fileID: 7457271482189901429, guid: 45da798cdef8c6048881914a9edec0c6,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,9 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b022e68eba288749ac5429c8f5cf8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cote1: {fileID: 7457271482189901429, guid: 45da798cdef8c6048881914a9edec0c6, type: 3}
+  cote2: {fileID: -6954828277827925871, guid: 45da798cdef8c6048881914a9edec0c6, type: 3}
+  dos: {fileID: -3110704343766058772, guid: 45da798cdef8c6048881914a9edec0c6, type: 3}
+  face: {fileID: 4667379812873934326, guid: 45da798cdef8c6048881914a9edec0c6, type: 3}
   path: []
   health: 1
-  tileSpeed: 1
   friendly: 0
   monsterManager: {fileID: 0}
 --- !u!50 &-334796211028621751

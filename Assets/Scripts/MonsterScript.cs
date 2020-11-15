@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class MonsterScript : MonoBehaviour
 {
+    public Sprite cote1;
+    public Sprite cote2;
+    private bool cote1Test;
+    public Sprite dos;
+    public Sprite face;
+
     [HideInInspector] public List<Vector2> path;
     public int health = 1;
-    public int tileSpeed = 1;
     public bool friendly = false;
     [HideInInspector] public MonsterManager monsterManager;
     private int actualIndex = 0;
+
+    private bool droite = true;
+    private bool gauche;
 
     void Start()
     {
@@ -17,7 +25,7 @@ public class MonsterScript : MonoBehaviour
     }
     public void updatePosition()
     {
-        actualIndex += tileSpeed;
+        actualIndex += 1;
         if (actualIndex >= path.Count)
         {
             if (friendly)
@@ -32,8 +40,37 @@ public class MonsterScript : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Move forward");
             transform.position = path[actualIndex] + Vector2.one * 0.5f;
+            if (path[actualIndex].x < path[actualIndex-1].x)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (path[actualIndex].x > path[actualIndex - 1].x)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+            if (path[actualIndex].y < path[actualIndex - 1].y)
+            {
+                GetComponent<SpriteRenderer>().sprite = face;
+            }
+            else if (path[actualIndex].y > path[actualIndex - 1].y)
+            {
+                GetComponent<SpriteRenderer>().sprite = dos;
+            }
+            else
+            {
+                if (cote1Test)
+                {
+                    GetComponent<SpriteRenderer>().sprite = cote1;
+                    cote1Test = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = cote2;
+                    cote1Test = true;
+                }
+            }
         }
     }
 
