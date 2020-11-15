@@ -14,7 +14,7 @@ public class TurretManager : MonoBehaviour
     [SerializeField] private Canvas turretBuildingPanel;
     [SerializeField] private BuildBasicTurretButton basicTurretButton;
     private CameraManager cameraManager;
-    private bool isMenuOn = false;
+    [SerializeField] private bool isMenuOn = false;
     private Vector2 desiredPosition;
     private Camera camera;
 

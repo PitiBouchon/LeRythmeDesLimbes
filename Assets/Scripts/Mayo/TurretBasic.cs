@@ -74,6 +74,7 @@ public class TurretBasic : Turret, TurretInterface
         }
         else
         {
+            ResetAttack();
             Attack();
         }
     }
