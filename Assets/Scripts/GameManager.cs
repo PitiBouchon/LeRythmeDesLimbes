@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public LevelInfos levelInfos;
 
+    public Texture2D cursorTexture;
+
     [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private bool goNext = true;
 
+    private bool ggEz = false;
+
     private float tempoCounter = -0.35f;
 
     private int pulseCounter = 0;
@@ -54,6 +58,8 @@ public class GameManager : MonoBehaviour
         
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
+
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         if (PlayerPrefs.GetInt("levelPlayed") == 0)
         {
             isTuto = true;
@@ -79,6 +85,10 @@ public class GameManager : MonoBehaviour
 
                 if (sentenceIndice >= currentSentenceLength)
                 {
+                    if (ggEz)
+                    {
+                        Win();
+                    }
                     currentSentence = musicManager.getNextSentence(goNext);
                     beatManager.loadSentence(currentSentence);
                     currentSentenceLength = currentSentence.GetLength(0);
@@ -108,8 +118,8 @@ public class GameManager : MonoBehaviour
     {
         maxHP-=1;
         HPText.text = maxHP.ToString();
-        if (maxHP <=0) {
-            SceneManager.LoadScene("MainMenu");
+        if (maxHP <=0 ) {
+            SceneManager.LoadScene("LostScene");
         }
     }
 
@@ -123,7 +133,7 @@ public class GameManager : MonoBehaviour
             currentPart++;
             if (levelInfos.didIWin(PlayerPrefs.GetInt("levelPlayed"),currentPart))
             {
-                Win();
+                ggEz = true;
             }
         }
     }

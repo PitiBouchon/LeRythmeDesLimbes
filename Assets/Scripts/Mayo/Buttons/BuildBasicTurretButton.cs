@@ -6,9 +6,12 @@ public class BuildBasicTurretButton : TurretMenuButton
 {    
     public void BuildBasicTurret()
     {
-        if (monsterManager.getFriendlySouls() >= turretManager.basicTurret.buildCost)
+        if (turretManager.desiredPositionInfo.tileType == TileType.Ground)
         {
-            turretManager.BuildTurret(Vector2.right, TurretType.BASIC);
+            if (monsterManager.getFriendlySouls() >= turretManager.basicTurret.buildCost)
+            {
+                turretManager.BuildTurret(Vector2.right, TurretType.BASIC);
+            }
         }
     }
 }
