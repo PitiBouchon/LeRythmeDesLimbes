@@ -123,9 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b022e68eba288749ac5429c8f5cf8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cote1: {fileID: -4748226682113978767, guid: 28a2859063caae448b48907629e64156, type: 3}
+  cote2: {fileID: 1256161366916996387, guid: 28a2859063caae448b48907629e64156, type: 3}
+  dos: {fileID: 5465401462441643804, guid: 28a2859063caae448b48907629e64156, type: 3}
+  face: {fileID: 24231930502025318, guid: 28a2859063caae448b48907629e64156, type: 3}
   path: []
   health: 2
-  tileSpeed: 1
   friendly: 1
   monsterManager: {fileID: 0}
 --- !u!50 &4486525287476872731
