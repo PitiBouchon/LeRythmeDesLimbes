@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     private bool goNext = true;
 
+    private bool ggEz = false;
+
     private float tempoCounter = -0.35f;
 
     private int pulseCounter = 0;
@@ -79,6 +81,10 @@ public class GameManager : MonoBehaviour
 
                 if (sentenceIndice >= currentSentenceLength)
                 {
+                    if (ggEz)
+                    {
+                        Win();
+                    }
                     currentSentence = musicManager.getNextSentence(goNext);
                     beatManager.loadSentence(currentSentence);
                     currentSentenceLength = currentSentence.GetLength(0);
@@ -108,8 +114,8 @@ public class GameManager : MonoBehaviour
     {
         maxHP-=1;
         HPText.text = maxHP.ToString();
-        if (maxHP <=0) {
-            SceneManager.LoadScene("MainMenu");
+        if (maxHP <=0 ) {
+            SceneManager.LoadScene("LostScene");
         }
     }
 
@@ -123,7 +129,7 @@ public class GameManager : MonoBehaviour
             currentPart++;
             if (levelInfos.didIWin(PlayerPrefs.GetInt("levelPlayed"),currentPart))
             {
-                Win();
+                ggEz = true;
             }
         }
     }
