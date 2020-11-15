@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public LevelInfos levelInfos;
 
+    public Texture2D cursorTexture;
+
     [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
         beatManager.loadSentence(currentSentence);
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
     }
 
 

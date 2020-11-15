@@ -31,6 +31,7 @@ public abstract class Turret : MonoBehaviour
     protected Text sellPriceText;
     protected bool isMenuOn = false;
 
+
     [Space][Header("Sprites & animation")]
     [SerializeField] protected Animator animator;
     public TurretType turretType;

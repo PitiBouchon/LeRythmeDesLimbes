@@ -1040,12 +1040,10 @@ MonoBehaviour:
   sellPrice: 3
   rank: 1
   turretMenu: {fileID: 1128872125177641000}
+  stdCursorTexture: {fileID: 2800000, guid: 1cb8fbf1f05174a4f830ea3e23ffa446, type: 3}
+  hoverCursorTexture: {fileID: 2800000, guid: f82fdb96d309e804bae69e6185873338, type: 3}
   animator: {fileID: 7188505662191806616}
   turretType: 0
-  normalTile: {fileID: -2510476293373519475, guid: 88b187ec528abbf4c91c394a2eac83a7,
-    type: 3}
-  attackedTile: {fileID: 6341370224737695196, guid: 69c7148c88500714d9ba7055f7fc7845,
-    type: 3}
 --- !u!61 &6699632453213745181
 BoxCollider2D:
   m_ObjectHideFlags: 0
