@@ -37,8 +37,6 @@ public class TilemapManager : MonoBehaviour
     public TileInfo[,] mapMatrix;
     private BoundsInt mapBounds;
 
-    private float timer = 1;
-
     void SetMatrix()
     {
         //tileMap.animationFrameRate = 0;
@@ -106,14 +104,5 @@ public class TilemapManager : MonoBehaviour
             }
         }
         tileMap.RefreshAllTiles();
-    }
-
-    void Update()
-    {
-        if (timer < Time.time)
-        {
-            updateTiles();
-            timer = Time.time + 1;
-        }
     }
 }

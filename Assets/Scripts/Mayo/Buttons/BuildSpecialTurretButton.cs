@@ -8,7 +8,7 @@ public class BuildSpecialTurretButton : TurretMenuButton
     {
         if (monsterManager.getFriendlySouls() >= turretManager.specialTurret.buildCost)
         {
-            turretManager.BuildTurret(Vector2.right, TurretType.SPECIAL);
+            turretManager.BuildTurret(Vector2.down, TurretType.SPECIAL);
         }
     }
 }

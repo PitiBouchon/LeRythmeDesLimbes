@@ -13,8 +13,9 @@ public class TurretManager : MonoBehaviour
     [Space][Header("UI")]
     [SerializeField] private Canvas turretBuildingPanel;
     [SerializeField] private BuildBasicTurretButton basicTurretButton;
+    [SerializeField] private BuildSpecialTurretButton specialTurretButton;
     private CameraManager cameraManager;
-    private bool isMenuOn = false;
+    [SerializeField] private bool isMenuOn = false;
     private Vector2 desiredPosition;
     private Camera camera;
 
@@ -45,7 +46,7 @@ public class TurretManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isMenuOn)
         {
-            if (!basicTurretButton.isHovered)
+            if (!(basicTurretButton.isHovered || specialTurretButton.isHovered))
             {
                 turretBuildingPanel.gameObject.SetActive(false);
                 isMenuOn = false;
