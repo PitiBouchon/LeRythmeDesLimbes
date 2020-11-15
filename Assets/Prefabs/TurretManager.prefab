@@ -442,6 +442,8 @@ MonoBehaviour:
     type: 3}
   turretBuildingPanel: {fileID: 6701427094565699380}
   basicTurretButton: {fileID: 6701427094265349725}
+  specialTurretButton: {fileID: 6705373446287683824}
+  isMenuOn: 0
   turrets: []
 --- !u!1 &7741748289601904247
 GameObject:
