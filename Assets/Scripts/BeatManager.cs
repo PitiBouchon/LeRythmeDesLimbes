@@ -70,30 +70,33 @@ public class BeatManager : MonoBehaviour
 
     public void UpdateBeat()
     {
-        if (actualSentence[0] == 0)
+        if (actualSentence.Count > 0)
         {
-            end_r.SetActive(false);
-            end_w.SetActive(true);
-        }
-        else if (actualSentence[0] == 1)
-        {
-            end_r.SetActive(true);
-            end_w.SetActive(false);
-        }
-        for (int i = 0; i < beats.Count; i++)
-        {
-            beats[i].transform.position = Vector3.MoveTowards(beats[i].transform.position, new Vector3(beats[i].transform.position.x+distance, beats[i].transform.position.y, beats[i].transform.position.z), speed*distance);
-            if(i > maxBeats)
+            if (actualSentence[0] == 0)
             {
-                beats[i].SetActive(false);
+                end_r.SetActive(false);
+                end_w.SetActive(true);
             }
-            else
+            else if (actualSentence[0] == 1)
             {
-                beats[i].SetActive(true);
+                end_r.SetActive(true);
+                end_w.SetActive(false);
             }
+            for (int i = 0; i < beats.Count; i++)
+            {
+                beats[i].transform.position = Vector3.MoveTowards(beats[i].transform.position, new Vector3(beats[i].transform.position.x + distance, beats[i].transform.position.y, beats[i].transform.position.z), speed * distance);
+                if (i > maxBeats)
+                {
+                    beats[i].SetActive(false);
+                }
+                else
+                {
+                    beats[i].SetActive(true);
+                }
+            }
+            actualSentence.RemoveAt(0);
+            Destroy(beats[0]);
+            beats.RemoveAt(0);
         }
-        actualSentence.RemoveAt(0);
-        Destroy(beats[0]);
-        beats.RemoveAt(0);
     }
 }
