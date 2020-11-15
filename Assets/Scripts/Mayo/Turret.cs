@@ -22,7 +22,7 @@ public abstract class Turret : MonoBehaviour
     public int buildCost = 3;
     public int upgradeCost = 5;
     public int sellPrice = 3;
-    [SerializeField] protected int rank = 0;
+    [SerializeField] protected int rank = 1;
 
     [Space][Header("UI")]
     [SerializeField] protected Canvas turretMenu;
@@ -33,10 +33,8 @@ public abstract class Turret : MonoBehaviour
     protected Text sellPriceText;
     protected bool isMenuOn = false;
 
-    [Space][Header("Sprites")]
-    [SerializeField] protected Sprite standardSprite;
-    [SerializeField] protected Sprite hoverSprite;
-    protected SpriteRenderer spriteRenderer;
+    [Space][Header("Sprites & animation")]
+    [SerializeField] protected Animator animator;
 
 
 
@@ -50,9 +48,7 @@ public abstract class Turret : MonoBehaviour
         transform.position = new Vector2(position.x + .5f, position.y + .5f);
 
         monsterManager = FindObjectOfType<MonsterManager>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         cameraManager = FindObjectOfType<CameraManager>();
-        spriteRenderer.sprite = standardSprite;
         upgradeButton = turretMenu.transform.Find("UpgradeButton").GetComponent<UpgradeButton>();
         upgradeCostText = upgradeButton.transform.Find("UpgradeCost").GetComponent<Text>();
         sellButton = turretMenu.transform.Find("SellButton").GetComponent<SellButton>();
@@ -76,6 +72,7 @@ public abstract class Turret : MonoBehaviour
     public void TurnOnOff()
     {
         isOn = !isOn;
+        animator.SetBool("isDisabled", !isOn);
     }
 
     public void Upgrade()
@@ -96,6 +93,7 @@ public abstract class Turret : MonoBehaviour
             upgradeCost += 5;
             sellPrice += 3;
             UpdateButtons();
+            animator.SetTrigger("rankUp");
         }
     }
 
@@ -121,12 +119,13 @@ public abstract class Turret : MonoBehaviour
 
     protected void OnMouseEnter()
     {
-        spriteRenderer.sprite = hoverSprite;
+        animator.SetBool("isHovered", true);
+
     }
 
     protected void OnMouseExit()
     {
-        spriteRenderer.sprite = standardSprite;
+        animator.SetBool("isHovered", false);
     }
 
     protected void UpdateButtons()

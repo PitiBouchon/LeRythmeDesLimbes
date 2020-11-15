@@ -12,7 +12,6 @@ public class TurretManager : MonoBehaviour
     [Space][Header("UI")]
     [SerializeField] private Canvas turretBuildingPanel;
     [SerializeField] private BuildBasicTurretButton basicTurretButton;
-    [SerializeField] private Text desiredPlaceMarker;
     private CameraManager cameraManager;
     private bool isMenuOn = false;
     private Vector2 desiredPosition;
@@ -37,8 +36,6 @@ public class TurretManager : MonoBehaviour
             if (!isMenuOn)
             {
                 desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-                desiredPlaceMarker.rectTransform.position = (camera.ScreenToWorldPoint(Input.mousePosition));
-                desiredPlaceMarker.gameObject.SetActive(true);
             }
             turretBuildingPanel.gameObject.SetActive(true);
             isMenuOn = true;
@@ -52,7 +49,6 @@ public class TurretManager : MonoBehaviour
                 turretBuildingPanel.gameObject.SetActive(false);
                 isMenuOn = false;
                 cameraManager.shouldMove = true;
-                desiredPlaceMarker.gameObject.SetActive(false);
             }
         }
     }
@@ -77,7 +73,6 @@ public class TurretManager : MonoBehaviour
         turretBuildingPanel.gameObject.SetActive(false);
         isMenuOn = false;
         cameraManager.shouldMove = true;
-        desiredPlaceMarker.gameObject.SetActive(false);
     }
 
     public void TempoUpdate()
