@@ -11,29 +11,31 @@ public class BeatManager : MonoBehaviour
     public GameObject beat;
     public GameObject blank;
 
-    private int pulseCount = 0;
-
     private List<int> actualSentence = new List<int>();
 
     [SerializeField]
-    private float speed = 2f;
+    private float speed;
     [SerializeField]
-    private int distance = 20;
+    private int distance;
     [SerializeField]
-    private int maxBeats = 20;
+    private int maxBeats;
+    [SerializeField]
+    private int offset;
 
     private void Start()
     {
-        loadSentence(new int[80] { 1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0});
+        end_r.transform.position = new Vector3(offset, end_r.transform.position.y, end_r.transform.position.z);
+        end_w.transform.position = new Vector3(offset, end_r.transform.position.y, end_r.transform.position.z);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log(pulseCount);
-            UpdateBeat(actualSentence[0]);
-            actualSentence.RemoveAt(0);
-            printActualSentence();
+            UpdateBeat();
+            actualSentence.Remove(0);
+            Destroy(beats[0]);
+            beats.RemoveAt(0);
+            Debug.Log(beats.Count);
         }
     }
 
@@ -47,43 +49,49 @@ public class BeatManager : MonoBehaviour
 
     public void loadSentence(int[] sentence)
     {
+        for(int i = 0; i < beats.Count; i++)
+        {
+            Destroy(beats[i]);
+        }
         beats.Clear();
         for(int i = 0; i < sentence.Length; i++)
         {
             actualSentence.Add(sentence[i]);
             if (sentence[i] == 1) beats.Add(Instantiate(beat));
             else beats.Add(Instantiate(blank));
-            beats[i].transform.position = new Vector3(357+maxBeats*2*speed - i * distance, 50, 10);
+            beats[i].transform.SetParent(GameObject.FindGameObjectWithTag("CanvasBeat").transform, false);
+            beats[i].transform.position = new Vector3(offset - i * distance, 30, 10);
             beats[i].transform.localScale += new Vector3(29, 29, 1);
+            if (i > maxBeats) beats[i].SetActive(false);
         }
     }
 
-    public void UpdateBeat(int actualBeat)
+    public void UpdateBeat()
     {
-        if (actualBeat == 0)
+        if (actualSentence[0] == 0)
         {
-            if (beats.Count > maxBeats - 1)
-            {
-                end_r.SetActive(false);
-                end_w.SetActive(true);
-            }
+            end_r.SetActive(false);
+            end_w.SetActive(true);
         }
-        else if (actualBeat == 1)
+        else if (actualSentence[0] == 1)
         {
-            if (beats.Count > maxBeats - 1)
-            {
-                end_r.SetActive(true);
-                end_w.SetActive(false);
-            }
+            end_r.SetActive(true);
+            end_w.SetActive(false);
         }
-        //if (beats.Count > maxBeats)
-        //{
-        //    Destroy(beats[0]);
-        //    beats.RemoveAt(0);
-        //}
         for (int i = 0; i < beats.Count; i++)
         {
-            beats[i].transform.position = Vector3.MoveTowards(beats[i].transform.position, new Vector3(beats[i].transform.position.x+distance, beats[i].transform.position.y, beats[i].transform.position.z), speed);
+            beats[i].transform.position = Vector3.MoveTowards(beats[i].transform.position, new Vector3(beats[i].transform.position.x+distance, beats[i].transform.position.y, beats[i].transform.position.z), speed*distance);
+            if(i > maxBeats)
+            {
+                beats[i].SetActive(false);
+            }
+            else
+            {
+                beats[i].SetActive(true);
+            }
         }
+        actualSentence.RemoveAt(0);
+        Destroy(beats[0]);
+        beats.RemoveAt(0);
     }
 }
