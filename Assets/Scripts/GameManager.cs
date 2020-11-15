@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
     public TurretManager turretManager;
     public TilemapManager tilemapManager;
 
+    public BeatManager beatManager;
+
     // Music
     private AudioMixer audioMixer;
     public MusicManager musicManager;
-    public BeatManager beatManager;
 
     public LevelInfos levelInfos;
 
@@ -47,13 +48,20 @@ public class GameManager : MonoBehaviour
     private int pulseCounter = 0;
     private int sentenceIndice = 0;
 
+    private bool isTuto = false;
     void Start()
     {
         currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
+        beatManager.loadSentence(currentSentence);
+        
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
-        beatManager.loadSentence(currentSentence);
+
         Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        if (PlayerPrefs.GetInt("levelPlayed") == 0)
+        {
+            isTuto = true;
+        }
     }
 
 
@@ -64,9 +72,11 @@ public class GameManager : MonoBehaviour
             if (tempoCounter >= pulse)
             {
                 beatManager.UpdateBeat();
+
                 if (currentSentence[sentenceIndice] == 1)
                 {
-                    monsterManager.updateMonsters();
+                    var x = levelInfos.getCurrentPatterns(PlayerPrefs.GetInt("levelPlayed"),currentPart);
+                    monsterManager.updateMonsters(x);
                     turretManager.TempoUpdate();
                 }
                 sentenceIndice++;
@@ -124,7 +134,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("VictoryMenu");
         Debug.Log("Bien joué mon grand");
     }
 

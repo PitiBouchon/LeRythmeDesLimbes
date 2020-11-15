@@ -33,8 +33,8 @@ public class MonsterManager : MonoBehaviour
     private bool isGenerating;
     private int nextGenCounter = 5;
 
-    public int minWaitTimeGeneration = 2;
-    public int maxWaitTimeGeneration = 10;
+    public int minWaitTimeGeneration = 6;
+    public int maxWaitTimeGeneration = 9;
 
     // TILES
     public Tilemap tileMap;
@@ -71,7 +71,7 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    public void addMonster()
+    public void addMonster(Pattern[] currentPatterns)
     {
         if (isGenerating) {
             MonsterType monsterType = monsterQueue.Dequeue();
@@ -92,7 +92,7 @@ public class MonsterManager : MonoBehaviour
             monsterSpawned.GetComponent<MonsterScript>().path = new List<Vector2>(path1);
             if (monsterQueue.Count <= 0)
             {
-                addPatternToQueue(patterns[UnityEngine.Random.Range(0, patterns.Length)]);
+                addPatternToQueue(currentPatterns[UnityEngine.Random.Range(0, patterns.Length)]);
                 isGenerating = false;
                 nextGenCounter = UnityEngine.Random.Range(minWaitTimeGeneration,maxWaitTimeGeneration);
             }
@@ -110,14 +110,14 @@ public class MonsterManager : MonoBehaviour
 
     }
 
-    public void updateMonsters()
+    public void updateMonsters(Pattern[] currentPatterns)
     {
         MonsterScript[] monstersScripts = gameObject.GetComponentsInChildren<MonsterScript>();
         foreach (MonsterScript monsterScript in monstersScripts)
         {
             monsterScript.updatePosition();
         }
-        addMonster();
+        addMonster(currentPatterns);
     }
 
     void updateSoulsText(Text text, int number)
