@@ -108,12 +108,12 @@ public class TilemapManager : MonoBehaviour
         tileMap.RefreshAllTiles();
     }
 
-    void Update()
-    {
-        if (timer < Time.time)
-        {
-            updateTiles();
-            timer = Time.time + 1;
-        }
-    }
+    // void Update()
+    // {
+    //     if (timer < Time.time)
+    //     {
+    //         updateTiles();
+    //         timer = Time.time + 1;
+    //     }
+    // }
 }

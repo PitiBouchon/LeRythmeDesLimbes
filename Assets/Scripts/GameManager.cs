@@ -44,11 +44,17 @@ public class GameManager : MonoBehaviour
     private int pulseCounter = 0;
     private int sentenceIndice = 0;
 
+    private bool isTuto = false;
     void Start()
     {
         currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
+        
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
+        if (PlayerPrefs.GetInt("levelPlayed") == 0)
+        {
+            isTuto = true;
+        }
     }
 
 
@@ -60,7 +66,8 @@ public class GameManager : MonoBehaviour
             {
                 if (currentSentence[sentenceIndice] == 1)
                 {
-                    monsterManager.updateMonsters();
+                    var x = levelInfos.getCurrentPatterns(PlayerPrefs.GetInt("levelPlayed"),currentPart);
+                    monsterManager.updateMonsters(x);
                     turretManager.TempoUpdate();
                 }
                 sentenceIndice++;

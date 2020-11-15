@@ -19,6 +19,8 @@ public class MonsterScript : MonoBehaviour
     private bool droite = true;
     private bool gauche;
 
+    public int enemyInstances = 0;
+
     void Start()
     {
         monsterManager = transform.parent.GetComponent<MonsterManager>(); // A CHANGER SI ON CHANGE L'IMPLEMENTATION

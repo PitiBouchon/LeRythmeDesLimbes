@@ -22,6 +22,7 @@ public class MusicManager : MonoBehaviour
     public MusicObject level2Part4;
     public MusicObject level2Fin;
     public MusicObject tutorielPercu;
+    public MusicObject tutorielPercuVide;
 
     private AudioSource audioSource;
 
@@ -46,10 +47,25 @@ public class MusicManager : MonoBehaviour
         level2Part3.tempochart = new int[72]{1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0};
         level2Part4.tempochart = new int[80]{1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0};
         level2Fin.tempochart = new int[8]{0,0,0,0,0,0,0,0};
+
         tutorielPercu.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
+        tutorielPercuVide.tempochart = new int[16]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
         audioSource = GetComponent<AudioSource>();
+        tutoriel.Add(tutorielPercu); //1
+        tutoriel.Add(tutorielPercu); //2
+        tutoriel.Add(tutorielPercuVide); //A
         tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercuVide); //B
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercuVide); //C
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercuVide); //D
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercuVide); //E
         tutoriel.Add(tutorielPercu);
 
         level1.Add(level1Percu);
