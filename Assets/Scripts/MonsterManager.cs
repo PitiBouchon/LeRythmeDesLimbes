@@ -197,11 +197,8 @@ public class MonsterManager : MonoBehaviour
     public void addFriendlySouls()
     {
         friendlySouls += 1;
-        gameManager.progression +=1;
-        // if (gameManager.progression%5 == 0)
-        // {
-        //     gameManager.goNext++;
-        // }
+        gameManager.Progress();
+        
         updateSoulsText(friendlySoulsText, friendlySouls);
     }
 
@@ -236,6 +233,6 @@ public class MonsterManager : MonoBehaviour
 
     public void loseLife()
     {
-        gameManager.loseLife();
+        gameManager.LoseLife();
     }
 }

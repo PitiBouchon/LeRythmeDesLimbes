@@ -54,10 +54,11 @@ public class MusicManager : MonoBehaviour
         level1.Add(level1Part4);
         level1.Add(level1Fin);
 
-        level2.Add(level2Percu);
+        level2.Add(level1Percu);
         level2.Add(level2Part1);
         level2.Add(level2Part2);
         level2.Add(level2Part3);
+        level2.Add(level2Percu);
         level2.Add(level2Part4);
         level2.Add(level2Fin);
     }
