@@ -12,6 +12,8 @@ public class TurretSpecial : Turret, TurretInterface
 
     [SerializeField] private Sprite rankTwoAttackSprite;
 
+    public Vector2 attackOrientation;
+
 
     private new void Start()
     {
@@ -22,9 +24,30 @@ public class TurretSpecial : Turret, TurretInterface
         one.size = monsterManager.tileMap.cellSize * 0.8f;
         two.size = monsterManager.tileMap.cellSize * 0.8f;
         three.size = monsterManager.tileMap.cellSize * 0.8f;
-        one.transform.Translate(new Vector2(-1, 1));
-        two.transform.Translate(new Vector2(0, 1));
-        three.transform.Translate(new Vector2(1, 1));
+        if (attackOrientation == Vector2.up)
+        {
+            one.transform.Translate(new Vector2(-1, 1));
+            two.transform.Translate(new Vector2(0, 1));
+            three.transform.Translate(new Vector2(1, 1));
+        }
+        if (attackOrientation == Vector2.down)
+        {
+            one.transform.Translate(new Vector2(-1, -1));
+            two.transform.Translate(new Vector2(0, -1));
+            three.transform.Translate(new Vector2(1, -1));
+        }
+        if (attackOrientation == Vector2.left)
+        {
+            one.transform.Translate(new Vector2(-1, -1));
+            two.transform.Translate(new Vector2(-1, 0));
+            three.transform.Translate(new Vector2(-1, 1));
+        }
+        if (attackOrientation == Vector2.right)
+        {
+            one.transform.Translate(new Vector2(1, 1));
+            two.transform.Translate(new Vector2(1, 0));
+            three.transform.Translate(new Vector2(1, -1));
+        }
     }
 
     public void Attack()

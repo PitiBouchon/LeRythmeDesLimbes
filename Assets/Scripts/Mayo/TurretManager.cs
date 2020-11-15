@@ -39,10 +39,10 @@ public class TurretManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-            TileInfo tileInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
             Vector3 mousePos = Input.mousePosition;
-            Debug.Log(tileInfo.tileType);
+            desiredPosition = camera.ScreenToWorldPoint(mousePos);
+            desiredPositionInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
+            Debug.Log(desiredPositionInfo.tileType);
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             turretBuildingPanel.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
             turretBuildingPanel.gameObject.SetActive(true);
@@ -83,6 +83,7 @@ public class TurretManager : MonoBehaviour
                 turretS.turretType = TurretType.SPECIAL;
                 turrets.Add(turretS);
                 monsterManager.setFriendlySouls(monsterManager.getFriendlySouls() - turretS.buildCost);
+                turretS.attackOrientation = orientation;
                 break;
             default:
                 break;

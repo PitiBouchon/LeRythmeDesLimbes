@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public LevelInfos levelInfos;
 
+    public Texture2D cursorTexture;
+
     [SerializeField] private float pulse = 0.25f;
 
     private int[] currentSentence;
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
         
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
+
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         if (PlayerPrefs.GetInt("levelPlayed") == 0)
         {
             isTuto = true;
