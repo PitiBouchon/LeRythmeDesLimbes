@@ -7,6 +7,7 @@ public class TurretManager : MonoBehaviour
 {
     [Header("Turrets")]
     public TurretBasic basicTurret;
+    public TurretSpecial specialTurret;
 
 
     [Space][Header("UI")]
@@ -87,6 +88,7 @@ public class TurretManager : MonoBehaviour
 public enum TurretType
 {
     STANDARD,
+    SPECIAL,
     AOE,
     RANGE
 }
