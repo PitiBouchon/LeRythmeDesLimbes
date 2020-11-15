@@ -12,7 +12,6 @@ public class TurretManager : MonoBehaviour
     [Space][Header("UI")]
     [SerializeField] private Canvas turretBuildingPanel;
     [SerializeField] private BuildBasicTurretButton basicTurretButton;
-    [SerializeField] private Text desiredPlaceMarker;
     private CameraManager cameraManager;
     private bool isMenuOn = false;
     private Vector2 desiredPosition;
@@ -20,14 +19,14 @@ public class TurretManager : MonoBehaviour
 
 
     private MonsterManager monsterManager;
-    private List<TurretBasic> basicTurrets;
+    public List<Turret> turrets;
 
     private void Start()
     {
         monsterManager = FindObjectOfType<MonsterManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         camera = FindObjectOfType<Camera>();
-        basicTurrets = new List<TurretBasic>();
+        turrets = new List<Turret>();
     }
 
     private void Update()
@@ -37,8 +36,6 @@ public class TurretManager : MonoBehaviour
             if (!isMenuOn)
             {
                 desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-                desiredPlaceMarker.rectTransform.position = (camera.ScreenToWorldPoint(Input.mousePosition));
-                desiredPlaceMarker.gameObject.SetActive(true);
             }
             turretBuildingPanel.gameObject.SetActive(true);
             isMenuOn = true;
@@ -52,7 +49,6 @@ public class TurretManager : MonoBehaviour
                 turretBuildingPanel.gameObject.SetActive(false);
                 isMenuOn = false;
                 cameraManager.shouldMove = true;
-                desiredPlaceMarker.gameObject.SetActive(false);
             }
         }
     }
@@ -63,7 +59,7 @@ public class TurretManager : MonoBehaviour
         {
             case TurretType.STANDARD:
                 TurretBasic turret = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
-                basicTurrets.Add(turret);
+                turrets.Add(turret);
                 monsterManager.setFriendlySouls(monsterManager.getFriendlySouls()-turret.buildCost);
                 break;
             case TurretType.AOE:
@@ -77,12 +73,11 @@ public class TurretManager : MonoBehaviour
         turretBuildingPanel.gameObject.SetActive(false);
         isMenuOn = false;
         cameraManager.shouldMove = true;
-        desiredPlaceMarker.gameObject.SetActive(false);
     }
 
     public void TempoUpdate()
     {
-        foreach (TurretBasic t in basicTurrets)
+        foreach (TurretBasic t in turrets)
         {
             t.TempoUpdate();
         }
