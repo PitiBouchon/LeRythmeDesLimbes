@@ -4,27 +4,6 @@ using UnityEngine.Tilemaps;
 
 public class TilemapManager : MonoBehaviour
 {
-    public enum TileType
-    {
-        Ground,
-        Path,
-        Unusable
-    }
-
-    public struct TileInfo
-    {
-        public TileBase animTile;
-        public TileType tileType;
-        public bool willBeAttacked;
-
-        public TileInfo(TileBase animTile, TileType tileType, bool willBeAttacked)
-        {
-            this.animTile = animTile;
-            this.tileType = tileType;
-            this.willBeAttacked = willBeAttacked;
-        }
-    }
-
     public Tilemap tileMap;
 
     public List<string> tilePathName;
@@ -104,5 +83,26 @@ public class TilemapManager : MonoBehaviour
             }
         }
         tileMap.RefreshAllTiles();
+    }
+}
+
+public enum TileType
+{
+    Ground,
+    Path,
+    Unusable
+}
+
+public struct TileInfo
+{
+    public TileBase animTile;
+    public TileType tileType;
+    public bool willBeAttacked;
+
+    public TileInfo(TileBase animTile, TileType tileType, bool willBeAttacked)
+    {
+        this.animTile = animTile;
+        this.tileType = tileType;
+        this.willBeAttacked = willBeAttacked;
     }
 }

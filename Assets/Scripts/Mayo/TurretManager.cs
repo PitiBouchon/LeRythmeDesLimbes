@@ -9,6 +9,8 @@ public class TurretManager : MonoBehaviour
     public TurretBasic basicTurret;
     public TurretSpecial specialTurret;
 
+    [Header("Tile")]
+    public TilemapManager tileMapManager;
 
     [Space][Header("UI")]
     [SerializeField] private Canvas turretBuildingPanel;
@@ -16,7 +18,8 @@ public class TurretManager : MonoBehaviour
     [SerializeField] private BuildSpecialTurretButton specialTurretButton;
     private CameraManager cameraManager;
     [SerializeField] private bool isMenuOn = false;
-    private Vector2 desiredPosition;
+    public Vector2 desiredPosition;
+    public TileInfo desiredPositionInfo;
     private Camera camera;
 
 
@@ -28,6 +31,7 @@ public class TurretManager : MonoBehaviour
         monsterManager = FindObjectOfType<MonsterManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         camera = FindObjectOfType<Camera>();
+        tileMapManager = FindObjectOfType<TilemapManager>();
         turrets = new List<Turret>();
     }
 
@@ -38,6 +42,7 @@ public class TurretManager : MonoBehaviour
             if (!isMenuOn)
             {
                 desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+                TileInfo tileInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
             }
             turretBuildingPanel.gameObject.SetActive(true);
             isMenuOn = true;
