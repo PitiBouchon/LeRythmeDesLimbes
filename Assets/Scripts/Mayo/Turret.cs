@@ -35,6 +35,7 @@ public abstract class Turret : MonoBehaviour
 
     [Space][Header("Sprites & animation")]
     [SerializeField] protected Animator animator;
+    public TurretType turretType;
 
 
 

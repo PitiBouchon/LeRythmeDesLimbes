@@ -438,7 +438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicTurret: {fileID: 6699632453213745178, guid: 0b135bc4408b4ed45bda801a0e611214,
     type: 3}
-  specialTurret: {fileID: 0}
+  specialTurret: {fileID: 2723004107535246753, guid: 1c91e564cbbfcdf4a828f3166e304f48,
+    type: 3}
   turretBuildingPanel: {fileID: 6701427094565699380}
   basicTurretButton: {fileID: 6701427094265349725}
   turrets: []
