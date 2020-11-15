@@ -71,6 +71,7 @@ public class MusicManager : MonoBehaviour
 
     public int[] getFirstSentence(int level)
     {
+        Debug.Log(level);
         if (level == 0)
         {
             currentLevel = new List<MusicObject>(tutoriel);
