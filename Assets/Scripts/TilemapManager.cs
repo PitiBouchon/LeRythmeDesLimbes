@@ -30,8 +30,9 @@ public class TilemapManager : MonoBehaviour
         for (int x = 0; x < mapBounds.size.x; x++)
         {
             for (int y = 0; y < mapBounds.size.y; y++)
-            {
-                TileBase tile = allTiles[x + y * mapBounds.size.x];
+
+                TileBase tile = tileMap.GetTile<TileBase>(new Vector3Int(x,y,0));
+                //TileBase tile = allTiles[x + y * mapBounds.size.x];
                 if (tile != null)
                 {
                     AnimatedTile animTile = tileMap.GetTile<AnimatedTile>(new Vector3Int(x, y, 0));
