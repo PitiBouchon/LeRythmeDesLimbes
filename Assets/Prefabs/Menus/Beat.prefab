@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4699909989099401583}
   - component: {fileID: 650988945213489474}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: image (6)_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -4475832180944608382, guid: 2b0ca02ade14776429af642a7b29508d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6073224608044769191}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Beat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
