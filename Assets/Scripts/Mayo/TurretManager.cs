@@ -39,12 +39,10 @@ public class TurretManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (!isMenuOn)
-            {
-                desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
-                TileInfo tileInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
-            }
+            desiredPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            TileInfo tileInfo = tileMapManager.mapMatrix[(int)Mathf.Floor(desiredPosition.x), (int)Mathf.Floor(desiredPosition.y)];
             Vector3 mousePos = Input.mousePosition;
+            Debug.Log(tileInfo.tileType);
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             turretBuildingPanel.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
             turretBuildingPanel.gameObject.SetActive(true);
@@ -60,6 +58,13 @@ public class TurretManager : MonoBehaviour
                 isMenuOn = false;
                 cameraManager.shouldMove = true;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            turretBuildingPanel.gameObject.SetActive(false);
+            isMenuOn = false;
+            cameraManager.shouldMove = true;
         }
     }
 

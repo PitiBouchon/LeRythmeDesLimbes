@@ -68,6 +68,13 @@ public abstract class Turret : MonoBehaviour
                 cameraManager.shouldMove = true;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            turretMenu.gameObject.SetActive(false);
+            isMenuOn = false;
+            cameraManager.shouldMove = true;
+        }
     }
 
     public void TurnOnOff()

@@ -36,7 +36,7 @@ public class TilemapManager : MonoBehaviour
                 {
                     AnimatedTile animTile = tileMap.GetTile<AnimatedTile>(new Vector3Int(x, y, 0));
                     TileType tileType;
-                    if (tilePathName.Contains(tile.name))
+                    if (animTile != null && animTile.name.StartsWith("Path"))
                     {
                         tileType = TileType.Path;
                     }
