@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: Ground
+  m_Name: Path5
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 6682738439518977790, guid: f2978af0ef1df6a45a4735fbfbeb302b, type: 3}
-  - {fileID: -562605217060080129, guid: f2978af0ef1df6a45a4735fbfbeb302b, type: 3}
+  - {fileID: 2173495554014203133, guid: 1397afc7d5fb8ef468a12c276dd2f7d8, type: 3}
+  - {fileID: 6865234443669844179, guid: 1397afc7d5fb8ef468a12c276dd2f7d8, type: 3}
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
   m_SpriteIndex: 0
+  m_Position: {x: 0, y: 0, z: 0}

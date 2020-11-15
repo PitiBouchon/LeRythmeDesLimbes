@@ -40,7 +40,6 @@ public class MonsterScript : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Move forward");
             transform.position = path[actualIndex] + Vector2.one * 0.5f;
             if (path[actualIndex].x < path[actualIndex-1].x)
             {

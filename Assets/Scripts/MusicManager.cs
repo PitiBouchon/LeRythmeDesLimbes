@@ -96,6 +96,10 @@ public class MusicManager : MonoBehaviour
         if (next)
         {
             currentPart++;
+            if (currentPart >= currentLevel.Count)
+            {
+                currentPart = 0;
+            }
             audioSource.clip = currentLevel[currentPart].mucic;
             audioSource.volume = currentLevel[currentPart].volume;
             audioSource.Play();

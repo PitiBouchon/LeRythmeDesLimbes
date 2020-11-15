@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: Ground2
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: -7536088266864489201, guid: 67d3cc2f2ad6a664a9d993e0b1d13e3d, type: 3}
+  - {fileID: -8228040277678468642, guid: 67d3cc2f2ad6a664a9d993e0b1d13e3d, type: 3}
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
+  m_SpriteIndex: 0
+  m_Position: {x: 0, y: 0, z: 0}
