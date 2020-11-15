@@ -19,14 +19,14 @@ public class TurretManager : MonoBehaviour
 
 
     private MonsterManager monsterManager;
-    private List<TurretBasic> basicTurrets;
+    public List<Turret> turrets;
 
     private void Start()
     {
         monsterManager = FindObjectOfType<MonsterManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         camera = FindObjectOfType<Camera>();
-        basicTurrets = new List<TurretBasic>();
+        turrets = new List<Turret>();
     }
 
     private void Update()
@@ -59,7 +59,7 @@ public class TurretManager : MonoBehaviour
         {
             case TurretType.STANDARD:
                 TurretBasic turret = Instantiate(basicTurret, desiredPosition, Quaternion.Euler(orientation), transform);
-                basicTurrets.Add(turret);
+                turrets.Add(turret);
                 monsterManager.setFriendlySouls(monsterManager.getFriendlySouls()-turret.buildCost);
                 break;
             case TurretType.AOE:
@@ -77,7 +77,7 @@ public class TurretManager : MonoBehaviour
 
     public void TempoUpdate()
     {
-        foreach (TurretBasic t in basicTurrets)
+        foreach (TurretBasic t in turrets)
         {
             t.TempoUpdate();
         }

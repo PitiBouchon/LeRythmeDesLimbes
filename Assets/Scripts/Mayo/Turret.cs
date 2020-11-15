@@ -40,6 +40,7 @@ public abstract class Turret : MonoBehaviour
 
     
     protected MonsterManager monsterManager;
+    protected TurretManager turretManager;
 
 
     protected void Start()
@@ -48,6 +49,7 @@ public abstract class Turret : MonoBehaviour
         transform.position = new Vector2(position.x + .5f, position.y + .5f);
 
         monsterManager = FindObjectOfType<MonsterManager>();
+        turretManager = FindObjectOfType<TurretManager>();
         cameraManager = FindObjectOfType<CameraManager>();
         upgradeButton = turretMenu.transform.Find("UpgradeButton").GetComponent<UpgradeButton>();
         upgradeCostText = upgradeButton.transform.Find("UpgradeCost").GetComponent<Text>();
@@ -100,6 +102,7 @@ public abstract class Turret : MonoBehaviour
     public void Sell()
     {
         monsterManager.setFriendlySouls(monsterManager.getFriendlySouls() + sellPrice);
+        turretManager.turrets.Remove(this);
         Destroy(this.gameObject);
     }
 
