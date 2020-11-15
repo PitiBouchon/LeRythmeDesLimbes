@@ -5,11 +5,19 @@ using UnityEngine;
 public class LevelInfos : MonoBehaviour
 {
     
+    public int[] tutorielSoulRequired = new int[]{10};
     public int[] level1SoulRequired = new int[]{0,3,3,3,5,0};
     public int[] level2SoulRequired = new int[]{0,3,5,4,0,6,0};
 
     public bool shouldIGoNext(int level, int part, int progression)
     {
+        if (level == 0)
+        {
+            if (progression >=10)
+            {
+                return true;
+            }
+        }
         if (level == 1)
         {
             if (progression >= level1SoulRequired[part])
@@ -29,6 +37,14 @@ public class LevelInfos : MonoBehaviour
 
     public bool didIWin(int level, int part)
     {
+        if (level == 0)
+        {
+            if (part >= 1)
+            {
+                return true;
+            }
+        }
+
         if (level == 1)
         {
             if (part >= level1SoulRequired.Length)
@@ -48,6 +64,10 @@ public class LevelInfos : MonoBehaviour
 
     public int getSoulRequired(int level,int part)
     {
+        if (level == 0)
+        {
+            return tutorielSoulRequired[0];
+        }
         if (level == 1)
         {
             return level1SoulRequired[part];

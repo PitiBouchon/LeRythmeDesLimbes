@@ -21,10 +21,11 @@ public class MusicManager : MonoBehaviour
     public MusicObject level2Part3;
     public MusicObject level2Part4;
     public MusicObject level2Fin;
+    public MusicObject tutorielPercu;
 
     private AudioSource audioSource;
 
-
+    private List<MusicObject> tutoriel = new List<MusicObject>();
     private List<MusicObject> level1 = new List<MusicObject>();
     private List<MusicObject> level2 = new List<MusicObject>();
     private List<MusicObject> currentLevel;
@@ -45,8 +46,12 @@ public class MusicManager : MonoBehaviour
         level2Part3.tempochart = new int[72]{1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0};
         level2Part4.tempochart = new int[80]{1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0,1,0,0,1,1,0,0,0};
         level2Fin.tempochart = new int[8]{0,0,0,0,0,0,0,0};
+        tutorielPercu.tempochart = new int[16]{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0};
 
         audioSource = GetComponent<AudioSource>();
+        tutoriel.Add(tutorielPercu);
+        tutoriel.Add(tutorielPercu);
+
         level1.Add(level1Percu);
         level1.Add(level1Part1);
         level1.Add(level1Part2);
@@ -66,29 +71,26 @@ public class MusicManager : MonoBehaviour
 
     public int[] getFirstSentence(int level)
     {
+        if (level == 0)
+        {
+            currentLevel = new List<MusicObject>(tutoriel);
+        }
         if (level == 1)
         { 
             currentLevel = new List<MusicObject>(level1);
-            currentPart = 0;
-            currentLevelLength = currentLevel.Count;
-            audioSource.clip = currentLevel[currentPart].mucic;
-            audioSource.volume = currentLevel[currentPart].volume;
-            audioSource.Play();
-            return currentLevel[currentPart].tempochart;
         }
 
         if (level == 2)
         { 
             currentLevel = new List<MusicObject>(level2);
-            currentPart = 0;
-            currentLevelLength = currentLevel.Count;
-            audioSource.clip = currentLevel[currentPart].mucic;
-            audioSource.volume = currentLevel[currentPart].volume;
-            audioSource.Play();
-            return currentLevel[currentPart].tempochart;
         }
         
-        return leitmotiv.tempochart;
+        currentPart = 0;
+        currentLevelLength = currentLevel.Count;
+        audioSource.clip = currentLevel[currentPart].mucic;
+        audioSource.volume = currentLevel[currentPart].volume;
+        audioSource.Play();
+        return currentLevel[currentPart].tempochart;
         
     }
 

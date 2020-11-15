@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-
-public class GameManager : MonoBehaviour
+public class TutorielManager : MonoBehaviour
 {
-    // Monsters
+// Monsters
     public MonsterManager monsterManager;
     public TurretManager turretManager;
     public TilemapManager tilemapManager;
@@ -46,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentSentence = musicManager.getFirstSentence(PlayerPrefs.GetInt("levelPlayed"));
+        currentSentence = musicManager.getFirstSentence(0);
         currentSentenceLength = currentSentence.GetLength(0);
         tempoCounter = 0f;
     }
@@ -103,12 +99,12 @@ public class GameManager : MonoBehaviour
     public void Progress()
     {
         progression++;
-        goNext = levelInfos.shouldIGoNext(PlayerPrefs.GetInt("levelPlayed"),currentPart,progression);
+        goNext = levelInfos.shouldIGoNext(0,currentPart,progression);
         if (goNext)
         {
-            progression -= levelInfos.getSoulRequired(PlayerPrefs.GetInt("levelPlayed"),currentPart);
+            progression -= levelInfos.getSoulRequired(0,currentPart);
             currentPart++;
-            if (levelInfos.didIWin(PlayerPrefs.GetInt("levelPlayed"),currentPart))
+            if (levelInfos.didIWin(0,currentPart))
             {
                 Win();
             }
